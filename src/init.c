@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3D.h                                            :+:    :+:            */
+/*   init.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/16 16:35:27 by yitoh         ########   odam.nl         */
+/*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
+/*   Updated: 2024/02/16 16:31:18 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include cub3d.h
 
-// Headers
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <errno.h>
-
-typedef struct	s_map
+t_map   *ft_init(char *cubfile)
 {
-	int		n_fd;
-	int		s_fd;
-	int		w_fd;
-	int		e_fd;
-	char	**init_map;
-	int		*floor;
-	int		*ceiling;
-}	t_map;
+    //if fd is invalid
+    //getnextline purse one line and look for idemifier
+    //if identifier -> put the value on the side
+    // if empty, skip the line
+    // else count the row and column (longest line) for the map
+    // malloc 2d array
+    //
 
 
-#endif
+    
+}
