@@ -6,7 +6,7 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/16 15:50:02 by yitoh         ########   odam.nl          #
+#    Updated: 2024/02/16 15:51:28 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,19 @@ OBJ		=$(SRC:src/%.c=obj/%.o)
 all:	$(NAME)
 
 clean:
-				@$(RM) -r obj
-				@printf "\e[1;35mCleaned Object Files\n\e[0;00m"
+	@$(RM) -r obj
+	@printf "\e[1;35mCleaned Object Files\n\e[0;00m"
 
 fclean:		clean
-				@$(RM) $(NAME)
-				@printf "\e[1;31mCleaned Executables\n\e[0;00m"
+	@$(RM) $(NAME)
+	@printf "\e[1;31mCleaned Executables\n\e[0;00m"
 
 re:			fclean all
 
 $(OBJ):		$(SRC) philosophers.h Makefile
-				@mkdir -p $(dir $@)
-				@printf "\e[1;34mBuilding $@\n\e[0;00m"
-				@$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
+	@mkdir -p $(dir $@)
+	@printf "\e[1;34mBuilding $@\n\e[0;00m"
+	@$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
 
 $(MLX):
 	@$(MAKE) -C $(MLX_DIR)
@@ -53,9 +53,9 @@ $(LIBFT):
 	@cp $(LIBFT) $(NAME)
 
 $(NAME):	$(OBJ) $(MLX) $(LIBFT)
-				@printf "\e[1;36mCompiling $@\n\e[0;00m"
-				@$(CC) $(CFLAG) $^ -Iinclude -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o $@
-				@printf "\e[1;32mDone\e[0;00m\n"
+	@printf "\e[1;36mCompiling $@\n\e[0;00m"
+	@$(CC) $(CFLAG) $^ -Iinclude -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o $@
+	@printf "\e[1;32mDone\e[0;00m\n"
 
 .PHONY:		all clean fclean re libft
 
