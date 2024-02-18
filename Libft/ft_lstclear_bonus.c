@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstclear_bonus.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/11/09 10:41:53 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/02/10 13:41:49 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_map	*map;
+	t_list	*tmp;
+	t_list	**head;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	tmp = *lst;
+	head = lst;
+	if (!lst)
+		return ;
+	while (tmp != NULL)
+	{
+		tmp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = tmp;
+	}
+	*head = NULL;
 }

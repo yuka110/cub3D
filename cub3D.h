@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/16 16:35:27 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/18 17:44:07 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,32 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <errno.h>
+# include "Libft/libft.h"
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int		n_fd;
 	int		s_fd;
 	int		w_fd;
 	int		e_fd;
-	char	**init_map;
+	char	**map2d;
 	int		*floor;
 	int		*ceiling;
 }	t_map;
 
+
+
+//init
+t_map	*ft_init(char *cubfile);
+
+//checkmap
+int		ft_checkmap(char **tmp, int i, int k);
+
+//cleanup
+void	ft_freearrs(char **s);
+void	ft_error(char *msg);
+void	ft_freemap(t_map *map);
 
 #endif

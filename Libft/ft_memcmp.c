@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memcmp.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/07 16:28:29 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/13 13:20:18 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_map	*map;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	i = 0;
+	str1 = (unsigned char *) s1;
+	str2 = (unsigned char *) s2;
+	if (n == 0)
+		return (0);
+	while (i < n - 1)
+	{
+		if (str1[i] != str2[i])
+			break ;
+		++i;
+	}
+	return ((int) str1[i] - str2[i]);
 }

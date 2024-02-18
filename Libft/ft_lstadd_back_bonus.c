@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstadd_back.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/11/07 16:48:28 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/09 18:42:26 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_map	*map;
+	t_list	*node;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	node = *lst;
+	if (!new)
+		return ;
+	if (!lst || !*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	else
+	{
+		node = ft_lstlast(*lst);
+		node -> next = new;
+	}
 }

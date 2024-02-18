@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/12 20:43:33 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/06/04 15:22:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	t_map	*map;
+	char	a;
+	size_t	i;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	a = (char) c;
+	i = 0;
+	while (i < ft_strlen(s) + 1)
+	{
+		if (s[i] == a)
+			return ((char *) s + i);
+		++i;
+	}
+	return (NULL);
 }

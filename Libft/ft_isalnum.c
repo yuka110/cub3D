@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_isalnum.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: yitoh <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/04 16:41:19 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/02/10 13:37:28 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+int	ft_isalnum(int c)
 {
-	t_map	*map;
-
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')
+		|| ('0' <= c && c <= '9'))
+		return (1);
+	else
+		return (0);
 }

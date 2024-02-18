@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/25 11:54:20 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/02/10 13:44:07 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_map	*map;
+	char	*arr;
+	size_t	i;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	if (start >= ft_strlen(s))
+		len = 0;
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
+	arr = (char *)ft_calloc((len + 1), sizeof(char));
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start] != '\0')
+	{
+		arr[i] = s[start];
+		++i;
+		++start;
+	}
+	return (arr);
 }

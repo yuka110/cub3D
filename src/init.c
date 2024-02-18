@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/16 18:00:45 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/18 19:11:38 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	ft_cntline(char *cubfile)
 	cnt = 0;
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("Error: file couldn't open\n");
-		exit(1);
-	}
+		ft_error("file couldn't open");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -46,8 +43,8 @@ char	**ft_filltmp(char **tmp, char *cubfile, int i)
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error: file couldn't open\n");
-		exit(1);
+		ft_freearrs(tmp);
+		ft_error("file couldn't open");
 	}
 	while (1)
 	{
@@ -57,10 +54,9 @@ char	**ft_filltmp(char **tmp, char *cubfile, int i)
 		tmp[i] = ft_strdup(line);
 		if (!tmp[i])
 		{
-			ft_frearrs(tmp);
+			ft_freearrs(tmp);
 			free (line);
-			ft_printf("Error: malloc failed\n");
-			exit (1);
+			ft_error("malloc failed");
 		}
 		free (line);
 		i++;
@@ -77,57 +73,48 @@ char	**ft_tmpmap(char *cubfile)
 
 	cnt = ft_cntline(cubfile);
 	if (cnt <= 0)
-	{
-		ft_printf("Error: empty file\n");
-		exit (1);
-	}
-	tmp = ft_calloc(cnt, sizeof(char **));
+		ft_error("empty file");
+	tmp = ft_calloc(cnt + 1, sizeof(char *));
 	if (!tmp)
-	{
-		ft_printf("Error: malloc failed\n");
-		exit (1);
-	}
-	return (ft_fillmap(tmp, cubfile, 0));
+		ft_error("malloc failed");
+	return (ft_filltmp(tmp, cubfile, 0));
 }
 
-int	ft_checkmap(char **tmp, int i, int k)
+void	ft_printmap(char **tmp)
 {
+	int i;
+
+	i = 0;
 	while (tmp[i])
 	{
-		k = 0;
-		while (tmp[i][k])
-		{
-			if (tmp[i][k] == ' ')
-				k++;
-			if (!ft_strncmp(tmp[i] + k, "NO ", 3) || !ft_strncmp(tmp[i] + k, "SO ", 3)
-				|| !ft_strncmp(tmp[i] + k, "WE ", 3) || !ft_strncmp(tmp[i] + k, "EA ", 3))
-				ft_checktexture(tmp[i] + k + 3);
-			else if (!ft_strncmp(tmp[i] + k, "F ", 2) || !ft_strncmp(tmp[i] + k, "C ", 2))
-				ft_checkcolor(tmp[i] + k + 2);
-			else if (tmp[i] + k == '1')
-				ft_checknbr();
-			i++;
-		}
+		ft_printf(tmp[i]);
+		i++;
 	}
-	return ();
+	ft_printf("\n");
 }
-
 
 t_map	*ft_init(char *cubfile)
 {
 	t_map	*map;
 	char	**tmp;
 
-	map = ft_calloc(1 * sizeof(t_map));
+	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 	{
 		ft_printf("Error: malloc failed\n");
 		exit (1);
 	}
-	tmp = ft_filltmp(cubfile);
+	tmp = ft_tmpmap(cubfile);
+	ft_printmap(tmp);
 	if (ft_checkmap(tmp, 0, 0))
-		//error;
+	{
+		ft_printf("map is invalid\n");
+		ft_freearrs(tmp);
+		exit (1);
+	}
 	
+	ft_freearrs(tmp);
+	return (map);
 	//if fd is invalid
 	//getnextline purse one line and look for idemifier
 	//if identifier -> put the value on the side

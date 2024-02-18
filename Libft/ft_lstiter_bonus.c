@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstiter.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/11/09 17:00:46 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/09 17:08:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_map	*map;
+	t_list	*tmp;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	tmp = lst;
+	if (!lst)
+		return ;
+	while (tmp != NULL)
+	{
+		f(tmp -> content);
+		tmp = tmp -> next;
+	}
 }

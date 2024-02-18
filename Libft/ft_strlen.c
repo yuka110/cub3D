@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: yitoh <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/05 15:00:15 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/13 13:25:39 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+size_t	ft_strlen(const char *s)
 {
-	t_map	*map;
+	size_t		i;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	i = 0;
+	while (s[i] != '\0')
+		++i;
+	return (i);
 }

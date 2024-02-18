@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/10 16:40:43 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/13 13:16:33 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_map	*map;
+	size_t			i;
+	unsigned char	a;
+	char			*arr;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	i = 0;
+	a = (unsigned char) c;
+	arr = (char *) b;
+	while (i < len)
+	{
+		arr[i] = a;
+		++i;
+	}
+	return ((void *)arr);
 }

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_isdigit.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: yitoh <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/04 16:32:53 by yitoh         #+#    #+#                 */
+/*   Updated: 2022/11/13 13:23:56 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+int	ft_isdigit(int c)
 {
-	t_map	*map;
-
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	if ('0' <= c && c <= '9')
+		return (1);
+	else
+		return (0);
 }

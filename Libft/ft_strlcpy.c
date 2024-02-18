@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strlcpy.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/07 16:29:23 by yitoh         #+#    #+#                 */
+/*   Updated: 2024/02/18 16:44:49 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	t_map	*map;
+	size_t	i;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	i = 0;
+	if (dstsize != 0)
+	{
+		while (i < dstsize - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			++i;
+		}
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
 }

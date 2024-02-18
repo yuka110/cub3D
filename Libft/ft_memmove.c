@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cleanup.c                                          :+:    :+:            */
+/*   ft_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/16 17:25:02 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:19:03 by yitoh         ########   odam.nl         */
+/*   Created: 2022/10/07 16:28:57 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/02/10 13:38:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-void	ft_freearrs(char **s)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+	int			i;
+	int			j;
+	char		*arr1;
+	const char	*arr2;
 
 	i = 0;
-	while (s && s[i])
+	j = i;
+	arr1 = (char *)dst;
+	arr2 = (const char *)src;
+	if (arr1 == 0 && arr2 == 0)
+		return (NULL);
+	if (dst > src)
 	{
-		free (s[i]);
-		i++;
+		i = len - 1;
+		j = i;
+		while (i >= 0 && j >= 0)
+			arr1[i--] = arr2[j--];
 	}
-	free (s);
-}
-
-void	ft_error(char *msg)
-{
-	ft_printf("Error: %s\n", msg);
-	exit(1);
-}
-
-void	ft_freemap(t_map *map)
-{
-	free(map);
-	exit(0);
+	else
+	{
+		while (i < (int) len && j < (int) len)
+			arr1[i++] = arr2[j++];
+	}
+	return (dst);
 }

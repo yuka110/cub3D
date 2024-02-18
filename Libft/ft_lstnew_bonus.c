@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_lstnew_bonus.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Created: 2022/11/07 16:49:21 by yitoh         #+#    #+#                 */
+/*   Updated: 2023/02/10 13:40:49 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+t_list	*ft_lstnew(void *content)
 {
-	t_map	*map;
+	t_list	*newnode;
 
-	if (ac != 2)
-		ft_error("number of argument is not good");
-	map = ft_init(av[1]);
-	ft_freemap(map);
+	newnode = (t_list *)malloc (sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode -> content = content;
+	newnode -> next = NULL;
+	return (newnode);
 }
