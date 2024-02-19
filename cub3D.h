@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:44:07 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/19 18:06:40 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ t_map	*ft_init(char *cubfile);
 
 //checkmap
 int		ft_checkmap(char **tmp, int i, int k);
+
+//parsemap
+t_map	*ft_initmap(char **tmp);
 
 //cleanup
 void	ft_freearrs(char **s);

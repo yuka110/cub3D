@@ -6,13 +6,13 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/19 17:37:19 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/19 17:55:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	ft_checktexture(char *png, int k)
+int	check_texture(char *png, int k)
 {
 	int	fd;
 
@@ -25,11 +25,13 @@ int	ft_checktexture(char *png, int k)
 	return (0);
 }
 
-int	ft_checkcolor(char *color, int k)
+int	check_color(char *color, int k)
 {
 	char	**arr;
 	int		code;
 
+	if (!ft_strchr(" \t", color[k]))
+		return (1);
 	while (ft_strchr(" \t", color[k]))
 		k++;
 	arr = ft_split(color, ',');
@@ -50,7 +52,7 @@ int	ft_checkcolor(char *color, int k)
 	return (0);
 }
 
-int	ft_checknbr(char **tmp, int i, int k)
+int	check_nbr(char **tmp, int i, int k)
 {
 	if (tmp[i][k] != '1')
 		return (ft_printf("first:%s\n", tmp[i] + k), 1);
@@ -72,6 +74,7 @@ int	ft_checknbr(char **tmp, int i, int k)
 	return (0);
 }
 
+//still need to check if there is duplicate
 int	ft_checkmap(char **tmp, int i, int k)
 {
 	while (tmp[i])
@@ -84,17 +87,17 @@ int	ft_checkmap(char **tmp, int i, int k)
 			|| !ft_strncmp(tmp[i] + k, "WE", 2)
 			|| !ft_strncmp(tmp[i] + k, "EA", 2))
 		{
-			if (!ft_checktexture(tmp[i], k + 2))     //remove ! for actual testing with valid file
+			if (!check_texture(tmp[i], k + 2))     //remove ! for actual testing with valid file
 				return (1);
 		}
 		else if (tmp[i][k] =='F'|| tmp[i][k] == 'C')
 		{
-			if (ft_checkcolor(tmp[i], k + 1))
+			if (check_color(tmp[i], k + 1))
 				return (ft_printf("color\n"), 1);
 		}
 		else if (tmp[i][k] != '\n')
 		{
-			if (ft_checknbr(tmp, i, k))
+			if (check_nbr(tmp, i, k))
 				return (ft_printf("nbr\n"),1);
 		}
 		i++;

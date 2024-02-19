@@ -6,7 +6,7 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/18 19:36:11 by yitoh         ########   odam.nl          #
+#    Updated: 2024/02/19 17:41:09 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME = cub3D
 SRC = src/main.c\
 	  src/init.c\
 	  src/checkmap.c\
+	  src/parsemap.c\
 	  src/cleanup.c
 
 # OBJ = $(SRC:.c=.o)
