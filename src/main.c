@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:11:22 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/20 18:38:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 	t_map	*map;
 
 	if (ac != 2)
-		ft_error("number of argument is not good");
+		ft_error("number of argument is not good", NULL);
 	map = ft_init(av[1]);
-	ft_freemap(map);
+	ft_cleanup(map);
 }

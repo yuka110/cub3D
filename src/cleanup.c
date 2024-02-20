@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 17:25:02 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/18 17:19:03 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/20 18:39:19 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,28 @@ void	ft_freearrs(char **s)
 	free (s);
 }
 
-void	ft_error(char *msg)
+void	ft_error(char *msg, t_map *map)
 {
+	if (map)
+	{
+		if (map->map2d)
+			ft_freearrs(map->map2d);
+		if (map->floor)
+			free(map->floor);
+		if (map->ceiling)
+			free(map->ceiling);
+		free(map);
+	}
 	ft_printf("Error: %s\n", msg);
 	exit(1);
 }
 
-void	ft_freemap(t_map *map)
+void	ft_cleanup(t_map *map)
 {
+	ft_freearrs(map->map2d);
+	free(map->ceiling);
+	free(map->floor);
+
 	free(map);
 	exit(0);
 }

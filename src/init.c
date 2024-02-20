@@ -6,22 +6,21 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/19 17:46:58 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/20 18:51:51 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-//all of them needs to be tested with libft
-int	cnt_line(char *cubfile)
+
+int	cnt_line(int fd, char *cubfile)
 {
-	int		fd;
 	int		cnt;
 	char	*line;
 
 	cnt = 0;
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
-		ft_error("file couldn't open");
+		ft_error("file couldn't open", NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -31,21 +30,17 @@ int	cnt_line(char *cubfile)
 		free (line);
 	}
 	free (line);
-	close(fd);
+	close (fd);
 	return (cnt);
 }
 
-char	**fill_tmp(char **tmp, char *cubfile, int i)
+char	**fill_tmp(char **tmp, int fd, int i, char *cubfile)
 {
-	int		fd;
 	char	*line;
-//maybe keep it open?
+
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_freearrs(tmp);
-		ft_error("file couldn't open");
-	}
+		ft_error("file couldn't open", NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -56,31 +51,34 @@ char	**fill_tmp(char **tmp, char *cubfile, int i)
 		{
 			ft_freearrs(tmp);
 			free (line);
-			ft_error("malloc failed");
+			ft_error("malloc failed", NULL);
 		}
 		free (line);
 		i++;
 	}
 	free (line);
-	close(fd);
+	close (fd);
 	return (tmp);
 }
 
-char	**ft_tmpmap(char *cubfile)
+char	**ft_tmpcub(char *cubfile)
 {
 	char	**tmp;
 	int		cnt;
+	int		fd;
 
-	cnt = cnt_line(cubfile);
+	fd = 0;
+	cnt = cnt_line(fd, cubfile);
 	if (cnt <= 0)
-		ft_error("empty file");
+		ft_error("empty file", NULL);
 	tmp = ft_calloc(cnt + 1, sizeof(char *));
 	if (!tmp)
-		ft_error("malloc failed");
-	return (fill_tmp(tmp, cubfile, 0));
+		ft_error("malloc failed", NULL);
+	tmp = fill_tmp(tmp, fd, 0, cubfile);
+	return (tmp);
 }
 
-void	ft_printmap(char **tmp)
+void	ft_printarr(char **tmp)
 {
 	int	i;
 
@@ -98,16 +96,15 @@ t_map	*ft_init(char *cubfile)
 	t_map	*map;
 	char	**tmp;
 
-	tmp = ft_tmpmap(cubfile);
-	ft_printmap(tmp);
+	tmp = ft_tmpcub(cubfile);
+	ft_printarr(tmp);
 	if (ft_checkmap(tmp, 0, 0))
 	{
-		ft_printf("map is invalid\n");
 		ft_freearrs(tmp);
-		exit (1);
+		ft_error("map is invalid", NULL);
 	}
 	map = ft_initmap(tmp);
-	
+
 	ft_freearrs(tmp);
 	return (map);
 	//if fd is invalid

@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/19 18:06:40 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/20 18:37:02 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ typedef struct s_map
 	char	**map2d;
 	int		*floor;
 	int		*ceiling;
+	int		depth;
+	int		width;
 }	t_map;
 
 
 
 //init
 t_map	*ft_init(char *cubfile);
+void	ft_printarr(char **tmp);
 
 //checkmap
 int		ft_checkmap(char **tmp, int i, int k);
@@ -45,7 +48,7 @@ t_map	*ft_initmap(char **tmp);
 
 //cleanup
 void	ft_freearrs(char **s);
-void	ft_error(char *msg);
-void	ft_freemap(t_map *map);
+void	ft_error(char *msg, t_map *map);
+void	ft_cleanup(t_map *map);
 
 #endif
