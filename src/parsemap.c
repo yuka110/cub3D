@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/20 19:15:42 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/24 18:19:32 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,39 @@ void	width_depth(char **tmp, t_map *map, int i, int k)
 		if (tmp[i][k] == '1')
 		{
 			map->depth++;
-			if (ft_strlen(tmp[i]) > map->width)
-				map->width = ft_strlen(tmp[i]);
+			if (ft_strlen(tmp[i]) - 1 > map->width)
+				map->width = ft_strlen(tmp[i]) - 1;
 		}
 		i++;
 	}
-	ft_printf("\nwidth is %d, depth is %d\n\n", map->width, map->depth);
+//	ft_printf("\n-----------------\nwidth is %d, depth is %d\n-----------------\n", map->width, map->depth);
 }
 
-char	**parse_map(char **tmp, t_map *map)
+int	*strcpy_atoi(int *dst, char *src, int width)
+{
+	int	i;
+
+	i = 0;
+	if (src && dst)
+	{
+		while (src[i] && src[i] != '\n')
+		{
+			if (src[i] != '1' && src[i] != '0')
+				dst[i] = -1;
+			else
+				dst[i]= src[i] - 48;
+			++i;
+		}
+		while (i < width)
+		{
+			dst[i] = -1;
+			i++;
+		}
+	}
+	return (dst);
+}
+
+int	**parse_map(char **tmp, t_map *map)
 {
 	int	i;
 	int	k;
@@ -39,7 +63,7 @@ char	**parse_map(char **tmp, t_map *map)
 	i = 0;
 	row = 0;
 	width_depth(tmp, map, 0, 0);
-	map->map2d = ft_calloc(map->depth + 1, sizeof (char *));
+	map->map2d = ft_calloc(map->depth + 1, sizeof (int *));
 	if (!map->map2d)
 		return (NULL);
 	while (tmp[i])
@@ -49,14 +73,10 @@ char	**parse_map(char **tmp, t_map *map)
 			k++;
 		if (tmp[i][k] == '1')
 		{
-			map->map2d[row] = ft_calloc(map->width + 1, sizeof(char));
+			map->map2d[row] = ft_calloc(map->width + 1, sizeof(int));
 			if (!map->map2d[row])
 				return (NULL);
-			k = ft_strlcpy(map->map2d[row], tmp[i], map->width);
-			// ft_printf("k is %d\n", k);
-			if (k < map->width && ft_strchr("\n\0", map->map2d[row][k]))
-				map->map2d[row] = ft_memset(map->map2d[row] + k - 1, ' ', map->width - k);
-			// ft_printf("map->map2d[%d]: %s\n", row, map->map2d[row]);
+			map->map2d[row] = strcpy_atoi(map->map2d[row], tmp[i], map->width);
 			row++;
 		}
 		i++;
@@ -69,10 +89,6 @@ int	*parse_color(char **tmp, char id, int i, int k)
 	int		*color;
 	char	**arr;
 
-	color = ft_calloc(4, sizeof(int));
-	ft_printf("yayyyy\n");
-	if (!color)
-		return (NULL);
 	while (tmp[i])
 	{
 		k = 0;
@@ -82,23 +98,23 @@ int	*parse_color(char **tmp, char id, int i, int k)
 			break ;
 		i++;
 	}
-	ft_printf("yayyyy\n");
-
 	if (!tmp[i])
 		return (NULL);
-	ft_printf("tmp[%d] + %d + 2 = %s\n", i, k, tmp[i] + k + 2);
 	arr = ft_split(tmp[i] + k + 2, ',');
 	if (!arr)
 		return (NULL);
+	color = ft_calloc(4, sizeof(int));
+	if (!color)
+		return (NULL);
 	k = 0;
-	while (arr[k])
+	while (k < 3)
 	{
 		color[k] = ft_atoi(arr[k]);
 		k++;
 	}
+	ft_freearrs(arr);
 	return (color);
 }
-
 
 t_map	*ft_initmap(char **tmp)
 {
@@ -110,21 +126,20 @@ t_map	*ft_initmap(char **tmp)
 		ft_freearrs(tmp);
 		ft_error("map struct malloc failed", NULL);
 	}
-	// map->map2d = parse_map(tmp, map);
-	// if (!map->map2d)
-	// {
-	// 	ft_freearrs(tmp);
-	// 	ft_error("map->2d malloc failed", map);
-	// }
-	// ft_printarr(map->map2d);
-	// map->ceiling = parse_color(tmp, 'C', 0, 0);
-	// map->floor = parse_color(tmp, 'F', 0, 0);
-	// if (!map->ceiling || !map->floor)
-	// {
-	// 	ft_freearrs(tmp);
-	// 	ft_error("malloc failed", map);
-	// }
-
-	//should we keep opening the fds?
+	map->map2d = parse_map(tmp, map);
+	if (!map->map2d)
+	{
+		ft_freearrs(tmp);
+		ft_error("map->2d malloc failed", map);
+	}
+	map->ceiling = parse_color(tmp, 'C', 0, 0);
+	map->floor = parse_color(tmp, 'F', 0, 0);
+	if (!map->ceiling || !map->floor)
+	{
+		ft_freearrs(tmp);
+		ft_error("malloc failed", map);
+	}
+	// check the textures maybe under checkmap?
+	ft_printmap(map);
 	return (map);
 }

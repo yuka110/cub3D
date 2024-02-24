@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/20 18:51:51 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/24 18:19:04 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,44 +78,20 @@ char	**ft_tmpcub(char *cubfile)
 	return (tmp);
 }
 
-void	ft_printarr(char **tmp)
-{
-	int	i;
-
-	i = 0;
-	while (tmp[i])
-	{
-		ft_printf(tmp[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-
 t_map	*ft_init(char *cubfile)
 {
 	t_map	*map;
 	char	**tmp;
 
 	tmp = ft_tmpcub(cubfile);
-	ft_printarr(tmp);
 	if (ft_checkmap(tmp, 0, 0))
 	{
 		ft_freearrs(tmp);
 		ft_error("map is invalid", NULL);
 	}
 	map = ft_initmap(tmp);
-
+	ft_printmap(map);
 	ft_freearrs(tmp);
 	return (map);
-	//if fd is invalid
-	//getnextline purse one line and look for idemifier
-	//if identifier -> put the value on the side
-	// if empty, skip the line
-	// else count the row and column (longest line) for the map
-	// malloc 2d array
-	//
-
-
-	
 }
 

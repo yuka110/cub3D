@@ -6,7 +6,7 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/19 17:41:09 by yitoh         ########   odam.nl          #
+#    Updated: 2024/02/24 18:02:11 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC = src/main.c\
 	  src/init.c\
 	  src/checkmap.c\
 	  src/parsemap.c\
-	  src/cleanup.c
+	  src/cleanup.c\
+	  src/testprint.c
 
 # OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
