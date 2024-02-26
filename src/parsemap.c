@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/24 18:19:32 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/26 19:26:55 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,5 @@ t_map	*ft_initmap(char **tmp)
 		ft_error("malloc failed", map);
 	}
 	// check the textures maybe under checkmap?
-	ft_printmap(map);
 	return (map);
 }
