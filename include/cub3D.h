@@ -6,20 +6,23 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/24 18:02:44 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/27 13:39:07 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define WIDTH 700
+# define HEIGHT 700
 
 // Headers
+# include "mlx_lib.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <errno.h>
-# include "Libft/libft.h"
+# include "../Libft/libft.h"
 
 typedef struct s_map
 {

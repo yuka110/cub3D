@@ -6,11 +6,11 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/20 18:38:27 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/27 13:37:12 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../include/cub3D.h"
 
 int main(int ac, char **av)
 {
@@ -19,5 +19,7 @@ int main(int ac, char **av)
 	if (ac != 2)
 		ft_error("number of argument is not good", NULL);
 	map = ft_init(av[1]);
+	if(init_screen(map) != 0)
+		ft_error("MLX error", NULL);
 	ft_cleanup(map);
 }
