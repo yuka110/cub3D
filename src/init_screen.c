@@ -6,11 +6,12 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/02/27 13:37:53 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/02/27 13:57:21 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "mlx_lib.h"
 
 // int	init_loop()
 // {

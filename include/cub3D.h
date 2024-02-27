@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/27 13:39:07 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/02/27 13:57:05 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define HEIGHT 700
 
 // Headers
-# include "mlx_lib.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

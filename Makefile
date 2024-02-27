@@ -6,7 +6,7 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/27 13:49:28 by evoronin      ########   odam.nl          #
+#    Updated: 2024/02/27 14:02:52 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,23 +28,13 @@ MLX_DIRECTORY = ./MLX42
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 HEADERS = ./libft ./include ./MLX42/include/MLX42 
-
-${OBJ}:	${SRC} $(HEADERS)
-	@mkdir -p $(dir $@)
-	@printf "\e[1;34mBuilding $@\n\e[0;00m"
-	@$(CC) $(CFLAGS) -c $< -o $@
 	
 all: ${LIB_MLX} ${LIBFT} ${NAME}
 
-${LIB_MLX}:
-	@git submodule update --init
-	@cmake ${MLX_DIRECTORY} -B ${MLX_DIRECTORY}/build
-	@make -C ${MLX_DIRECTORY}/build -j4
 
 ${LIBFT}: $(HEADERS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
-
 
 ${NAME}: ${OBJ} $(HEADERS)
 	@make -s -C $(LIBFT_DIR)
@@ -52,6 +42,15 @@ ${NAME}: ${OBJ} $(HEADERS)
 	@$(CC) $(CFLAGS) $(OBJ) ${LIB_MLX} ${LIBFT} $(MLX_FLAGS) -o $(NAME)
 	@echo "${GREEN}Done!${END}"
 
+${LIB_MLX}:
+	@git submodule update --init
+	@cmake ${MLX_DIRECTORY} -B ${MLX_DIRECTORY}/build
+	@make -C ${MLX_DIRECTORY}/build -j4
+
+${OBJ}:	${SRC} $(HEADERS)
+	@mkdir -p $(dir $@)
+	@printf "\e[1;34mBuilding $@\n\e[0;00m"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) -r obj

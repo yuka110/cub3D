@@ -6,13 +6,14 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/27 13:37:12 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/02/27 14:00:14 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_map	*map;
 
