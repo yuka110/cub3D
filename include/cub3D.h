@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/29 17:40:08 by elenavoroni   ########   odam.nl         */
+/*   Updated: 2024/02/29 18:22:11 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_map
 	int			*ceiling;
 	size_t		depth;
 	size_t		width;
+	int			px; //player's position
+	int			py;
 }	t_map;
 
 
