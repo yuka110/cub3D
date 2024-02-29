@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <marvin@codam.nl>                      +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 15:00:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2022/11/13 13:25:39 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/29 17:25:13 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

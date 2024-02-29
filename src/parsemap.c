@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   parsemap.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/26 19:26:55 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/29 17:24:16 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../include/cub3D.h"
 
 void	width_depth(char **tmp, t_map *map, int i, int k)
 {

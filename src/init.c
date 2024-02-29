@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   init.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/24 18:19:04 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/29 17:24:16 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../include/cub3D.h"
 
 int	cnt_line(int fd, char *cubfile)
 {
@@ -94,4 +94,3 @@ t_map	*ft_init(char *cubfile)
 	ft_freearrs(tmp);
 	return (map);
 }
-

@@ -3,16 +3,17 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: yitoh <yitoh@student.codam.nl>               +#+                      #
+#    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/27 14:29:59 by evoronin      ########   odam.nl          #
+#    Updated: 2024/02/29 17:22:47 by elenavoroni   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-MLX_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+# MLX_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit // for linux
+MLX_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 NAME = cub3D
 SRC = src/main.c\
 	  src/init.c\
@@ -20,7 +21,7 @@ SRC = src/main.c\
 	  src/parsemap.c\
 	  src/cleanup.c\
 	  src/testprint.c\
-	  src/init_screen.c 
+	  src/init_screen.c
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 LIB_MLX = ./MLX42/build/libmlx42.a
@@ -29,7 +30,12 @@ LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 HEADERS = ./Libft ./include ./MLX42/include/MLX42 
 
-all: ${LIB_MLX} ${LIBFT} ${NAME}
+all: ${NAME}
+
+${OBJ_DIR}%.o: %.c $(HEADERS)
+	@mkdir -p $(dir $@)
+	@echo "Compiling $<"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 ${LIB_MLX}: $(HEADERS)
 	@git submodule update --init
@@ -40,13 +46,7 @@ ${LIBFT}: $(HEADERS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
 
-${OBJ}:	${SRC} $(HEADERS)
-	@mkdir -p $(dir $@)
-	# @printf "\e[1;34mBuilding $@\n\e[0;00m"
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-${NAME}: ${OBJ} ${LIB_MLX} ${LIBFT} ${HEADERS}
-	@make -s -C $(LIBFT_DIR)
+${NAME}: ${OBJ} ${LIB_MLX} ${LIBFT}
 	@echo "${BLUE}Compiling ${NAME}${END}"
 	@$(CC) $(CFLAGS) $(OBJ) -o ${NAME} ${LIB_MLX} $(MLX_FLAGS) ${LIBFT}
 	@echo "${GREEN}Done!${END}"
@@ -64,6 +64,3 @@ fclean:		clean
 
 re:			fclean all
 .PHONY:		all clean fclean re libft
-
-
-

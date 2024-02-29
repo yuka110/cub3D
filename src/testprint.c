@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   testprint.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 18:00:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/24 18:14:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/29 17:24:16 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../include/cub3D.h"
 
 void	ft_printarr(char **tmp)
 {

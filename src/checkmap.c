@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   checkmap.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/19 17:55:37 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/02/29 17:24:16 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../include/cub3D.h"
 
 int	check_texture(char *png, int k)
 {

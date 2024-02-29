@@ -3,15 +3,15 @@
 /*                                                        ::::::::            */
 /*   init_screen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/02/27 13:57:21 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/02/29 17:40:29 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "mlx_lib.h"
+#include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 // int	init_loop()
 // {

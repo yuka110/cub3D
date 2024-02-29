@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/27 13:57:05 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/02/29 17:40:08 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 
 typedef struct s_map
 {
-	int		n_fd;
-	int		s_fd;
-	int		w_fd;
-	int		e_fd;
-	int		**map2d;
-	int		*floor;
-	int		*ceiling;
-	int		depth;
-	int		width;
+	size_t		n_fd;
+	size_t		s_fd;
+	size_t		w_fd;
+	size_t		e_fd;
+	int			**map2d;
+	int			*floor;
+	int			*ceiling;
+	size_t		depth;
+	size_t		width;
 }	t_map;
 
 
