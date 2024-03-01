@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/02/29 18:27:15 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/01 14:39:21 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 
 int	init_screen(t_map *map)
 {
-	double posX = 22, posY = 12;  //x and y start position
-	double dirX = -1, dirY = 0; //initial direction vector
-	double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
-	double time = 0; //time of current frame
-	double oldTime = 0; //time of previous frame
-	screen(WIDTH, HEIGHT, 0, "Raycaster");
-	init_loop();
-	// map->n_fd = 0; //for testing to silence the error
-	// return (0);
+	mlx_t	*mlx;
+	
+	map->n_fd = 0;
+	// double posX = 22, posY = 12;  //x and y start position
+	// double dirX = -1, dirY = 0; //initial direction vector
+	// double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
+	// double time = 0; //time of current frame
+	// double oldTime = 0; //time of previous frame
+	mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	// init_loop();
+	mlx_terminate(mlx);
+	return (0);
 }

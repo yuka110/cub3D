@@ -6,14 +6,13 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/29 18:25:53 by yitoh         ########   odam.nl          #
+#    Updated: 2024/03/01 15:05:48 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-# MLX_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit // for linux
-MLX_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=leak #-O1
+MLX_FLAGS = -ldl -lglfw -pthread -lm
 NAME = cub3D
 SRC = src/main.c\
 	  src/init.c\
@@ -48,7 +47,7 @@ ${LIBFT}: $(HEADERS)
 
 ${NAME}: ${OBJ} ${LIB_MLX} ${LIBFT}
 	@echo "${BLUE}Compiling ${NAME}${END}"
-	@$(CC) $(CFLAGS) $(OBJ) -o ${NAME} ${LIB_MLX} $(MLX_FLAGS) ${LIBFT}
+	@$(CC) $(CFLAGS) $(OBJ) ${LIBFT} ${LIB_MLX} $(MLX_FLAGS) -o ${NAME}
 	@echo "${GREEN}Done!${END}"
 
 clean:

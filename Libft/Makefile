@@ -6,11 +6,12 @@
 #    By: yitoh <yitoh@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/06 14:35:44 by yitoh         #+#    #+#                  #
-#    Updated: 2024/02/18 19:36:09 by yitoh         ########   odam.nl          #
+#    Updated: 2024/03/01 14:44:20 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
+CFLAG = -Wall -Wextra -Werror
 SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_strlen.c \
 	  ft_tolower.c ft_toupper.c ft_memcpy.c ft_memchr.c ft_strlcpy.c ft_strlcat.c \
 	  ft_strncmp.c ft_strchr.c ft_strnstr.c ft_strrchr.c ft_memset.c ft_bzero.c \
@@ -24,7 +25,6 @@ SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_strlen
 	  get_next_line.c get_next_line_utils.c
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 OBJ_DIR = ./obj/
-CFLAG = -Wall -Wextra -Werror
 NAME = libft.a
 
 all: $(NAME)
