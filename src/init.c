@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 15:16:50 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/01 18:39:05 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int	*parse_color(char **tmp, char id, int i, int k)
 	ft_freearrs(arr);
 	return (color);
 }
+
+// void	parse_texture(char **tmp, t_map **map, int i, int k)
+// {
+
+// }
 
 t_map	*ft_initmap(char **tmp)
 {
