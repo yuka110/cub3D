@@ -6,29 +6,77 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 16:41:16 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/01 17:47:44 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-void	cast_ray_next(t_data *data)
+void	dda(t_data *data, t_rays *ray)
 {
-	int mapX = int(posX);
-	int mapY = int(posY);
-	  //length of ray from current position to next x or y-side
-	double sideDistX;
-	double sideDistY;
-	   //length of ray from one x or y-side to next x or y-side
-	double deltaDistX = (rayDirX == 0) ? 1e30 : std::abs(1 / rayDirX);
-	double deltaDistY = (rayDirY == 0) ? 1e30 : std::abs(1 / rayDirY);
-	double perpWallDist;
-	  //what direction to step in x or y-direction (either +1 or -1)
-	int stepX;
-	int stepY;
-	int hit = 0; //was there a wall hit?
-	int side; //was a NS or a EW wall hit?
+	while (ray->hit == 0)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+		{
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+		}
+		if (data->map->map2d[ray->map_x][ray->map_y] > 0)
+			ray->hit = 1;
+	}
+}
+
+void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y)
+{
+	ray->hit = 0;
+	ray->map_x = data->pos_x;
+	ray->map_y = data->pos_y;
+	if (ray_dir_x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1 / ray_dir_x);
+	if (ray_dir_y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1 / ray_dir_y);
+}
+
+void	cast_ray_next(t_data *data, double ray_dir_x, double ray_dir_y)
+{
+	t_rays	*ray;
+
+	ray = NULL;
+	init_ray_struct(ray, data, ray_dir_x, ray_dir_x);
+	if (ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (data->pos_x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - data->pos_x) * ray->delta_dist_x;
+	}
+	if (ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (data->pos_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - data->pos_y) * ray->delta_dist_y;
+	}
+	dda(data, ray);
 }
 
 void	cast_ray(t_data *data)
@@ -46,7 +94,7 @@ void	cast_ray(t_data *data)
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
 		x++;
 	}
-	cast_ray_next(data);
+	cast_ray_next(data, ray_dir_x, ray_dir_y);
 }
 
 void	ft_hooks(mlx_key_data_t k, void *param)
@@ -80,11 +128,12 @@ int	init_screen(t_map *map)
 {
 	t_data	*data;
 
+	data = NULL;
 	data->map = map;
 	data->pos_x = map->px;
 	data->pos_y = map->py;
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	init_loop(map);
+	init_loop(data);
 	mlx_terminate(data->mlx);
 	// ft_free();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 16:39:35 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/01 17:46:10 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+# include <math.h>
+
+typedef struct s_rays
+{
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+}	t_rays;
 
 typedef struct s_data
 {
@@ -36,6 +52,9 @@ int		init_screen(t_map *map);
 void	init_loop(t_data *data);
 void	ft_hooks(mlx_key_data_t k, void *param);
 void	cast_ray(t_data *data);
-void	cast_ray_next(t_data *data);
+void	cast_ray_next(t_data *data, double ray_dir_x, double ray_dir_y);
+void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y);
+void	dda(t_data *data, t_rays *ray);
 
 #endif
