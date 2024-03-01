@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 17:46:10 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/01 17:49:52 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int		init_screen(t_map *map);
 void	init_loop(t_data *data);
 void	ft_hooks(mlx_key_data_t k, void *param);
 void	cast_ray(t_data *data);
-void	cast_ray_next(t_data *data, double ray_dir_x, double ray_dir_y);
+void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y);
 void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y);
 void	dda(t_data *data, t_rays *ray);

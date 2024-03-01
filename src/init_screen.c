@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 17:47:44 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/01 17:51:09 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
 }
 
-void	cast_ray_next(t_data *data, double ray_dir_x, double ray_dir_y)
+void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y)
 {
-	t_rays	*ray;
-
-	ray = NULL;
 	init_ray_struct(ray, data, ray_dir_x, ray_dir_x);
 	if (ray_dir_x < 0)
 	{
@@ -85,8 +83,10 @@ void	cast_ray(t_data *data)
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
+	t_rays	*ray;
 
 	x = 0;
+	ray = NULL;
 	while (x < WIDTH)
 	{
 		camera_x = (2 * x) / ((double)WIDTH - 1);
@@ -94,7 +94,11 @@ void	cast_ray(t_data *data)
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
 		x++;
 	}
-	cast_ray_next(data, ray_dir_x, ray_dir_y);
+	cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+	else
+		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 }
 
 void	ft_hooks(mlx_key_data_t k, void *param)
