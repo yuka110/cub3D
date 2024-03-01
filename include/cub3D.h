@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 15:17:37 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/01 16:22:57 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 typedef struct s_map
 {
-	size_t		n_fd;
-	size_t		s_fd;
-	size_t		w_fd;
-	size_t		e_fd;
+	char		*n_tex;
+	char		*s_tex;
+	char		*w_tex;
+	char		*e_tex;
 	int			**map2d;
 	int			*floor;
 	int			*ceiling;
