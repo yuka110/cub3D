@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/02/29 18:22:11 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/01 15:17:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,16 @@ typedef struct s_map
 t_map	*ft_init(char *cubfile);
 void	ft_printarr(char **tmp);
 
+//parsetmp
+char	**ft_parsecub(char *cubfile);
+
 //checkmap
 int		ft_checkmap(char **tmp, int i, int k);
 
 //parsemap
+int		**parse_map(char **tmp, t_map *map);
 t_map	*ft_initmap(char **tmp);
+
 
 //cleanup
 void	ft_freearrs(char **s);
