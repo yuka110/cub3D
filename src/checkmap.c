@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 16:56:15 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/01 18:33:50 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,23 @@ int	check_nbr(char **tmp, int i, int k)
 	return (0);
 }
 
+int	check_others(char **tmp, int i, int k, int players)
+{
+	while (tmp[i])
+	{
+		k = 0;
+		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
+			k++;
+		if (!ft_strchr("\n1", tmp[i][k]) && !players)
+			return (1);
+		if (tmp[i][k] == '1')
+		{
+
+		}
+		i--;
+	}
+}
+
 //still need to check if there is duplicate player
 int	ft_checkmap(char **tmp, int i, int k)
 {
@@ -108,5 +125,7 @@ int	ft_checkmap(char **tmp, int i, int k)
 			return (ft_printf("nbr\n"),1);
 		i++;
 	}
+	// if (check_others(tmp, i - 1, 0, 0))
+	// 	return (i);
 	return (0);
 }
