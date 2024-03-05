@@ -1,7 +1,7 @@
-NO textures/a1.png
-SO textures/b1.png
-WE textures/c1.png
-EA textures/d1.png
+NO ./textures/pinkN.png
+SO ./textures/blueS.png
+WE ./textures/greenW.png
+EA ./textures/orangeE.png
 F 255,100,0
 C 110,30,100
 

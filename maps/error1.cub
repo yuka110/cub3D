@@ -1,9 +1,9 @@
 
-SO textures/b.png
-WE textures/d.png
+SO ./textures/blueS.png
+WE ./textures/greenW.png
 F 192,247,176
 C 152,169,217
-EA textures/c1.png
+EA ./textures/orangeE.png
 
         1111111111111111111111111
         1000000000110000000000001
@@ -23,4 +23,4 @@ EA textures/c1.png
  1111111 1111111 111111111111
 10000111 11101011101111010001
  1111111 1111111 111111111111
-NO textures/a.png
+NO ./textures/pinkN.png
