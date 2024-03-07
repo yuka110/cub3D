@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/24 18:00:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 15:52:26 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/04 15:37:26 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,18 @@ void	ft_printmap(t_map *map)
 	ft_printf("\e[1;36mmap in int **:\n\e[0;00m");
 	ft_printintarrs(map->map2d, map->width);
 	ft_printf("\e[1;36mpx in index:\e[0;00m %d\n\e[1;36mpy in index:\e[0;00m %d\n", map->px, map->py);
+	//color
 	ft_printf("\e[1;31mfloor color: \e[0;00m");
 	ft_printints(map->floor, 3);
 	ft_printf("\e[1;31mceiling color: \e[0;00m");
 	ft_printints(map->ceiling, 3);
-
+	//texture
+	ft_printf("\e[1;32mNorth texture file: \e[0;00m");
+	ft_printf("%s\n", map->n_tex);
+	ft_printf("\e[1;32mSouth texture file: \e[0;00m");
+	ft_printf("%s\n", map->s_tex);
+	ft_printf("\e[1;32mEast texture file: \e[0;00m");
+	ft_printf("%s\n", map->e_tex);
+	ft_printf("\e[1;32mWest texture file: \e[0;00m");
+	ft_printf("%s\n", map->w_tex);
 }

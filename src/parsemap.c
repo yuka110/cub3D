@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 16:28:16 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/04 15:19:33 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	width_depth(char **tmp, t_map *map, int i, int k)
 		}
 		i++;
 	}
-//	ft_printf("\n-----------------\nwidth is %d, depth is %d\n-----------------\n", map->width, map->depth);
 }
 
 int	assign_posvalue(char c, t_map *map, int i, int row)

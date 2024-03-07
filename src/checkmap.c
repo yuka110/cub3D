@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 18:43:04 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/05 19:08:42 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_texture(char *png, int k)
 	char	*file;
 
 	if (!ft_strnstr(png, ".png", ft_strlen(png)))
-		return (1);
+		return (ft_printf("png file not found "), 1);
 	while (ft_strchr(" \t", png[k]))
 		k++;
 	file = ft_strdup(png + k);
@@ -68,7 +68,7 @@ int	check_color(char *color, int k)
 int	check_nbr(char **tmp, int i, int k)
 {
 	if (tmp[i][k] != '1')
-		return (ft_printf("first:%s\n", tmp[i] + k), 1);
+		return (1);
 	while (tmp[i][k])
 	{
 		if ((!tmp[i - 1] || ft_strchr(" \0", tmp[i - 1][k]))
@@ -128,8 +128,8 @@ int	ft_checkmap(char **tmp, int i, int k)
 				|| !ft_strncmp(tmp[i] + k, "SO", 2)
 				|| !ft_strncmp(tmp[i] + k, "WE", 2)
 				|| !ft_strncmp(tmp[i] + k, "EA", 2))
-			&& !check_texture(tmp[i], k + 2))  //remove ! for actual testing with valid file
-			return (1);
+			&& check_texture(tmp[i], k + 2))  //remove ! for actual testing with valid file
+			return (ft_printf("texture\n"), 1);
 		else if ((tmp[i][k] == 'F' || tmp[i][k] == 'C')
 				&& (check_color(tmp[i], k + 1)))
 			return (ft_printf("color\n"), 1);
