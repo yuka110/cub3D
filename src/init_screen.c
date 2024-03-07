@@ -6,12 +6,28 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 17:51:09 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/07 12:59:30 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
+
+void	calc_line(t_data *data, t_rays *ray)
+{
+	int	line_h;
+	int	start;
+	int	end;
+
+	line_h = (int)(HEIGHT / ray->perp_wall_dist);
+	start = -line_h / 2 + HEIGHT / 2;
+	if (start < 0)
+		start = 0;
+	end = line_h / 2 + HEIGHT / 2;
+	if (end >= HEIGHT)
+		end = HEIGHT - 1;
+	mlx_put_pixel(data->img, start, end, ft_color(data, ray));
+}
 
 void	dda(t_data *data, t_rays *ray)
 {
@@ -99,6 +115,7 @@ void	cast_ray(t_data *data)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+	calc_line(data, ray);
 }
 
 void	ft_hooks(mlx_key_data_t k, void *param)
@@ -120,7 +137,7 @@ void	init_loop(t_data *data)
 {
 	while (1)
 	{
-		mlx_delete_image(data->mlx, data->img);
+		// mlx_delete_image(data->mlx, data->img);
 		data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 		mlx_image_to_window(data->mlx, data->img, 0, 0);
 		mlx_key_hook(data->mlx, ft_hooks, data);

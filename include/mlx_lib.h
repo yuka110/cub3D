@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/01 17:49:52 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/07 12:57:58 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	o;
+	int	c;
+}	t_color;
 
 typedef struct s_rays
 {
@@ -57,5 +66,7 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y);
 void	dda(t_data *data, t_rays *ray);
+void	calc_line(t_data *data, t_rays *ray);
+int32_t	ft_color(t_data *data, t_rays *ray);
 
 #endif
