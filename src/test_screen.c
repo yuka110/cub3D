@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/09 11:57:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/09 12:48:28 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/09 14:30:02 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	dda(t_data *data, t_rays *ray)
 void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y)
 {
+	ft_printf("ray struct\n");
 	ray->hit = 0;
+	ft_printf("ray struct\n");
 	ray->map_x = data->pos_x;
 	ray->map_y = data->pos_y;
 	if (ray_dir_x == 0)
@@ -64,6 +66,7 @@ void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
+	
 }
 
 void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
@@ -93,10 +96,9 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 	dda(data, ray);
 }
 
+//define dir_x and dir_y
 void	cast_ray(t_data *data)
 {
-    ft_printf("cast_ray\n");
-
 	int		x;
 	double	camera_x;
 	double	ray_dir_x;
@@ -105,6 +107,8 @@ void	cast_ray(t_data *data)
 
 	x = 0;
 	ray = NULL;
+	ray_dir_x = -1;
+	ray_dir_y = 0;
 	while (x < WIDTH)
 	{
 		camera_x = (2 * x) / ((double)WIDTH - 1);
@@ -120,14 +124,13 @@ void	cast_ray(t_data *data)
 	calc_line(data, ray);
 }
 
-void	ft_hooks(mlx_key_data_t k, void *param)
+void	ft_hooks(void *param)
 {
 	t_data	*data;
-    ft_printf("hooks\n");
 
 	data = param;
-	k.key = MLX_KEY_ESCAPE;
-	if (mlx_is_key_down(data->mlx, k.key))
+	// k.key = MLX_KEY_ESCAPE;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(data->mlx);
 		free(data);
@@ -143,7 +146,7 @@ void	init_loop(t_data *data)
 		// mlx_delete_image(data->mlx, data->img);
 		data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 		mlx_image_to_window(data->mlx, data->img, 0, 0);
-		mlx_key_hook(data->mlx, ft_hooks, data);
+		mlx_loop_hook(data->mlx, ft_hooks, data);
 		mlx_loop(data->mlx);
 	}
 }
