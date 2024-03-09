@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/05 19:08:42 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/09 11:46:11 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	ft_checkmap(char **tmp, int i, int k)
 				|| !ft_strncmp(tmp[i] + k, "SO", 2)
 				|| !ft_strncmp(tmp[i] + k, "WE", 2)
 				|| !ft_strncmp(tmp[i] + k, "EA", 2))
-			&& check_texture(tmp[i], k + 2))  //remove ! for actual testing with valid file
+			&& check_texture(tmp[i], k + 2))
 			return (ft_printf("texture\n"), 1);
 		else if ((tmp[i][k] == 'F' || tmp[i][k] == 'C')
 				&& (check_color(tmp[i], k + 1)))

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_screen.c                                      :+:    :+:            */
+/*   test_screen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
+/*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/09 12:50:10 by yitoh         ########   odam.nl         */
+/*   Created: 2024/03/09 11:57:15 by yitoh         #+#    #+#                 */
+/*   Updated: 2024/03/09 12:48:28 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 
 void	cast_ray(t_data *data)
 {
+    ft_printf("cast_ray\n");
+
 	int		x;
 	double	camera_x;
 	double	ray_dir_x;
@@ -121,6 +123,7 @@ void	cast_ray(t_data *data)
 void	ft_hooks(mlx_key_data_t k, void *param)
 {
 	t_data	*data;
+    ft_printf("hooks\n");
 
 	data = param;
 	k.key = MLX_KEY_ESCAPE;
@@ -145,13 +148,14 @@ void	init_loop(t_data *data)
 	}
 }
 
-int	init_screen(t_map *map)
+int	test_screen(t_map *map)
 {
 	t_data	*data;
 
-	data = ft_calloc(1, sizeof(t_data));
-	if (!data)
+    data = ft_calloc(1, sizeof(t_data));
+    if (!data)
 		ft_error("data struct malloc failed", NULL);
+	// data = NULL;
 	data->map = map;
 	data->pos_x = map->px;
 	data->pos_y = map->py;
@@ -163,6 +167,6 @@ int	init_screen(t_map *map)
 	}
 	init_loop(data);
 	mlx_terminate(data->mlx);
-	free (data);
+	free(data);
 	return (0);
 }

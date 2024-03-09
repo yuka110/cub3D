@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/07 12:57:58 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/09 12:05:23 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 void	dda(t_data *data, t_rays *ray);
 void	calc_line(t_data *data, t_rays *ray);
 int32_t	ft_color(t_data *data, t_rays *ray);
+
+
+int		test_screen(t_map *map);
 
 #endif

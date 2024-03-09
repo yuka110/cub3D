@@ -6,12 +6,13 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 17:25:02 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/01 16:26:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/09 12:09:44 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+//free 2d int arrays
 void	ft_freeintarrs(int **s)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	ft_freeintarrs(int **s)
 	free (s);
 }
 
+//free 2d char arrays
 void	ft_freearrs(char **s)
 {
 	int	i;
@@ -38,6 +40,7 @@ void	ft_freearrs(char **s)
 	free (s);
 }
 
+//free map struct & show error msg
 void	ft_error(char *msg, t_map *map)
 {
 	if (map)
@@ -62,6 +65,7 @@ void	ft_error(char *msg, t_map *map)
 	exit(1);
 }
 
+//used at the end of program & exit 0
 void	ft_cleanup(t_map *map)
 {
 	ft_freeintarrs(map->map2d);
