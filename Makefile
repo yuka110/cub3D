@@ -6,12 +6,12 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/03/09 12:57:09 by yitoh         ########   odam.nl          #
+#    Updated: 2024/03/09 14:46:46 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=leak #-O1
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=leak #-O1
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 NAME = cub3D
 SRC = src/main.c\
@@ -20,7 +20,7 @@ SRC = src/main.c\
 	  src/checkmap.c\
 	  src/parsemap.c\
 	  src/cleanup.c\
-	  src/testprint.c\
+	  src/initprint.c\
 	  src/test_screen.c\
 	  src/color.c
 #	  src/init_screen.c\

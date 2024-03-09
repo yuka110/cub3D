@@ -6,13 +6,14 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/09 11:57:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/09 14:30:02 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/09 14:46:09 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
+//what does this do? what is start and what is end? put piel needs to be looped 
 void	calc_line(t_data *data, t_rays *ray)
 {
 	int	line_h;
@@ -53,9 +54,7 @@ void	dda(t_data *data, t_rays *ray)
 void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y)
 {
-	ft_printf("ray struct\n");
 	ray->hit = 0;
-	ft_printf("ray struct\n");
 	ray->map_x = data->pos_x;
 	ray->map_y = data->pos_y;
 	if (ray_dir_x == 0)
@@ -106,7 +105,12 @@ void	cast_ray(t_data *data)
 	t_rays	*ray;
 
 	x = 0;
-	ray = NULL;
+	ray = ft_calloc(1, sizeof(t_rays));
+	if (!ray)
+	{
+		free(data);
+		exit(EXIT_FAILURE);
+	}
 	ray_dir_x = -1;
 	ray_dir_y = 0;
 	while (x < WIDTH)
@@ -122,6 +126,7 @@ void	cast_ray(t_data *data)
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 	calc_line(data, ray);
+	free (ray);
 }
 
 void	ft_hooks(void *param)
