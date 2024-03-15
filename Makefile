@@ -6,7 +6,7 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/03/09 14:46:46 by yitoh         ########   odam.nl          #
+#    Updated: 2024/03/15 12:23:33 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,10 @@ SRC = src/main.c\
 	  src/checkmap.c\
 	  src/parsemap.c\
 	  src/cleanup.c\
-	  src/initprint.c\
-	  src/test_screen.c\
-	  src/color.c
-#	  src/init_screen.c\
+	  src/testprint.c\
+	  src/color.c\
+	  src/init_screen.c
+	#   src/test_screen.c
 
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

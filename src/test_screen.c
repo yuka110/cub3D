@@ -6,14 +6,14 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/09 11:57:15 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/09 14:46:09 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/15 12:39:25 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-//what does this do? what is start and what is end? put piel needs to be looped 
+//what does this do? what is start and what is end? put pixel needs to be looped 
 void	calc_line(t_data *data, t_rays *ray)
 {
 	int	line_h;
@@ -27,7 +27,6 @@ void	calc_line(t_data *data, t_rays *ray)
 	end = line_h / 2 + HEIGHT / 2;
 	if (end >= HEIGHT)
 		end = HEIGHT - 1;
-	mlx_put_pixel(data->img, start, end, ft_color(data, ray));
 }
 
 void	dda(t_data *data, t_rays *ray)
@@ -65,7 +64,6 @@ void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
-	
 }
 
 void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
@@ -160,8 +158,8 @@ int	test_screen(t_map *map)
 {
 	t_data	*data;
 
-    data = ft_calloc(1, sizeof(t_data));
-    if (!data)
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
 		ft_error("data struct malloc failed", NULL);
 	// data = NULL;
 	data->map = map;

@@ -6,12 +6,29 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/09 12:50:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/15 16:36:25 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
+
+void	paint_line(t_data *data, t_rays *ray, int start, int end)
+{
+	int	y;
+	int	y_max;
+
+	y = start;
+	y_max = end;
+	if (y >= 0)
+	{
+		while (y < y_max)
+		{
+			mlx_put_pixel(data->img, data->pos_x, y, ft_color(data, ray));
+			y++;
+		}
+	}
+}
 
 void	calc_line(t_data *data, t_rays *ray)
 {
@@ -26,7 +43,7 @@ void	calc_line(t_data *data, t_rays *ray)
 	end = line_h / 2 + HEIGHT / 2;
 	if (end >= HEIGHT)
 		end = HEIGHT - 1;
-	mlx_put_pixel(data->img, start, end, ft_color(data, ray));
+	paint_line(data, ray, start, end);
 }
 
 void	dda(t_data *data, t_rays *ray)
@@ -118,6 +135,11 @@ void	cast_ray(t_data *data)
 	calc_line(data, ray);
 }
 
+void	game_loop()
+{
+	
+}
+
 void	ft_hooks(mlx_key_data_t k, void *param)
 {
 	t_data	*data;
@@ -130,19 +152,16 @@ void	ft_hooks(mlx_key_data_t k, void *param)
 		free(data);
 		exit(EXIT_SUCCESS);
 	}
-	cast_ray(data);
 }
 
 void	init_loop(t_data *data)
 {
-	while (1)
-	{
-		// mlx_delete_image(data->mlx, data->img);
-		data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-		mlx_image_to_window(data->mlx, data->img, 0, 0);
-		mlx_key_hook(data->mlx, ft_hooks, data);
-		mlx_loop(data->mlx);
-	}
+	cast_ray(data);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_loop_hook(data->mlx, game_loop(), data->mlx);
+	mlx_key_hook(data->mlx, ft_hooks, data);
+	mlx_loop(data->mlx);
 }
 
 int	init_screen(t_map *map)

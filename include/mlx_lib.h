@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/09 13:00:46 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/15 15:38:47 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,19 @@ typedef struct s_data
 
 //init_screen
 int		init_screen(t_map *map);
-// void	init_loop(t_data *data);
-// void	ft_hooks(mlx_key_data_t k, void *param);
-// void	cast_ray(t_data *data);
-// void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-// 			double ray_dir_y);
-// void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
-// 			double ray_dir_y);
-// void	dda(t_data *data, t_rays *ray);
-// void	calc_line(t_data *data, t_rays *ray);
+void	init_loop(t_data *data);
+void	ft_hooks(mlx_key_data_t k, void *param);
+void	cast_ray(t_data *data);
+void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y);
+void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y);
+void	dda(t_data *data, t_rays *ray);
+void	calc_line(t_data *data, t_rays *ray);
 int32_t	ft_color(t_data *data, t_rays *ray);
+void	paint_line(t_data *data, t_rays *ray, int start, int end);
 
 
-int		test_screen(t_map *map);
+// int		test_screen(t_map *map);
 
 #endif
