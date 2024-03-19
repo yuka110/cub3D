@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/15 15:38:47 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/19 17:50:46 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <string.h>
 
 typedef struct s_color
 {
@@ -46,29 +47,30 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_map		*map;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		time;
-	double		old_time;
+	double		pos_x; //player position x
+	double		pos_y; //player position y
+	double		dir_x; //initial direction vector
+	double		dir_y; //initial direction vector
+	double		plane_x; //the 2d raycaster version of the camera plane
+	double		plane_y; //the 2d raycaster version of the camera plane
+	double		time; //time of current frame
+	double		old_time; //time of previous frame
 }	t_data;
 
 //init_screen
-int		init_screen(t_map *map);
-void	init_loop(t_data *data);
-void	ft_hooks(mlx_key_data_t k, void *param);
-void	cast_ray(t_data *data);
-void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y);
-void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y);
-void	dda(t_data *data, t_rays *ray);
-void	calc_line(t_data *data, t_rays *ray);
-int32_t	ft_color(t_data *data, t_rays *ray);
-void	paint_line(t_data *data, t_rays *ray, int start, int end);
+int			init_screen(t_map *map);
+void		init_loop(t_data *data);
+void		game_loop(t_data *data);
+void		ft_hooks(mlx_key_data_t k, void *param);
+void		cast_ray(t_data *data, t_rays *ray);
+void		cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
+				double ray_dir_y);
+void		init_ray_struct(t_rays *ray, t_data *data);
+void		dda(t_data *data, t_rays *ray);
+void		calc_line(t_data *data, t_rays *ray);
+int32_t		ft_color_one(t_data *data, t_rays *ray);
+uint32_t	ft_color_two(int *color);
+void		paint_line(t_data *data, t_rays *ray, int start, int end);
 
 
 // int		test_screen(t_map *map);

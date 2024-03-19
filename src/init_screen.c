@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/15 16:36:25 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/19 17:54:23 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	paint_line(t_data *data, t_rays *ray, int start, int end)
 	{
 		while (y < y_max)
 		{
-			mlx_put_pixel(data->img, data->pos_x, y, ft_color(data, ray));
+			mlx_put_pixel(data->img, data->pos_x, y, ft_color_one(data, ray));
 			y++;
 		}
 	}
@@ -48,6 +48,7 @@ void	calc_line(t_data *data, t_rays *ray)
 
 void	dda(t_data *data, t_rays *ray)
 {
+	ray->hit = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -67,12 +68,16 @@ void	dda(t_data *data, t_rays *ray)
 	}
 }
 
-void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y)
+void	init_ray_struct(t_rays *ray, t_data *data)
 {
 	ray->hit = 0;
 	ray->map_x = data->pos_x;
 	ray->map_y = data->pos_y;
+}
+
+void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
+			double ray_dir_y)
+{
 	if (ray_dir_x == 0)
 		ray->delta_dist_x = 1e30;
 	else
@@ -81,12 +86,6 @@ void	init_ray_struct(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
-}
-
-void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y)
-{
-	init_ray_struct(ray, data, ray_dir_x, ray_dir_x);
 	if (ray_dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -110,34 +109,28 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 	dda(data, ray);
 }
 
-void	cast_ray(t_data *data)
+void	cast_ray(t_data *data, t_rays *ray)
 {
 	int		x;
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
-	t_rays	*ray;
 
 	x = 0;
-	ray = NULL;
 	while (x < WIDTH)
 	{
-		camera_x = (2 * x) / ((double)WIDTH - 1);
+		//calc ray position and direction
+		camera_x = (2 * x) / ((double)WIDTH - 1); //x coordinate in camera space
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
+		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
+		if (ray->side == 0)
+			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+		else
+			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+		calc_line(data, ray);
 		x++;
 	}
-	cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
-	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
-	else
-		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-	calc_line(data, ray);
-}
-
-void	game_loop()
-{
-	
 }
 
 void	ft_hooks(mlx_key_data_t k, void *param)
@@ -154,14 +147,34 @@ void	ft_hooks(mlx_key_data_t k, void *param)
 	}
 }
 
-void	init_loop(t_data *data)
+void	draw_layout(t_data *data, t_map *map)
 {
-	cast_ray(data);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	mlx_loop_hook(data->mlx, game_loop(), data->mlx);
-	mlx_key_hook(data->mlx, ft_hooks, data);
-	mlx_loop(data->mlx);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < HEIGHT / 2)
+				mlx_put_pixel(data->img, x, y, ft_color_two(map->ceiling));
+			else
+				mlx_put_pixel(data->img, x, y, ft_color_two(map->floor));
+			x++;
+		}
+		y++;
+	}
+}
+
+void	game_loop(t_data *data)
+{
+	t_rays	*ray;
+
+	ray = NULL;
+	init_ray_struct(ray, data);
+	cast_ray(data, ray);
 }
 
 int	init_screen(t_map *map)
@@ -180,7 +193,18 @@ int	init_screen(t_map *map)
 		free (data);
 		ft_error("mlx init", map);
 	}
-	init_loop(data);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img)
+	{
+		free(data);
+		mlx_terminate(data->mlx);
+		ft_error("img init", map);
+	}
+	draw_layout(data, map);
+	game_loop(data);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_key_hook(data->mlx, ft_hooks, data);
+	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	free (data);
 	return (0);
