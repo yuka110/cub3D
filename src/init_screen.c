@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:05:33 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/20 17:17:46 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ void	dda(t_data *data, t_rays *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if ((ray->map_x >= data->map->width ||ray->map_x < 0)
-			 || (ray->map_y >= data->map->depth || ray->map_y < 0))
-		{
-			ray->hit = 1;
-			return ;
-		}
-		if (data->map->map2d[ray->map_x][ray->map_y] > 0)
+		if (data->map->map2d[ray->map_y][ray->map_x] > 0)
 			ray->hit = 1;
 	}
 }
@@ -89,10 +83,6 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
-	// printf("x %f ", ray->delta_dist_x);
-	// printf("y %f\n", ray->delta_dist_y);
-	// printf("x dir %f ", ray_dir_x);
-	// printf("y dir %f\n", ray_dir_y);
 	if (ray_dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -128,17 +118,18 @@ void	cast_ray(t_data *data, t_rays *ray)
 	{
 		ray->map_x = data->pos_x;
 		ray->map_y = data->pos_y;
-		printf("%d %d\n", ray->map_x, ray->map_y);
 		camera_x = 2 * x / ((double)WIDTH) - 1;
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
 		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
-		
 		if (ray->side == 0)
+		{
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+		}
 		else
+		{
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		// printf ("distant to wall: %f\n", ray->perp_wall_dist);
+		}
 		calc_line(data, ray, x);
 		x++;
 	}
@@ -204,8 +195,8 @@ int	init_screen(t_map *map)
 	if (!data)
 		ft_error("data struct malloc failed", NULL);
 	data->map = map;
-	data->pos_x = map->px;
-	data->pos_y = map->py;
+	data->pos_x = map->px + 0.5;
+	data->pos_y = map->py + 0.5;
 	data->dir_x = -1;
 	data->dir_y = 0;
 	data->plane_x = 0;
