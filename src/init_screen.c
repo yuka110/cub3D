@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 14:36:38 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:54:18 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	paint_line(t_data *data, t_rays *ray, int start, int end, int x)
 	y_max = end;
 	while (y < y_max)
 	{
-		printf("HERE\n");
 		mlx_put_pixel(data->img, x, y, ft_color_one(data, ray));
 		y++;
 	}
@@ -62,12 +61,15 @@ void	dda(t_data *data, t_rays *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_x >= data->map->width || ray->map_y >= data->map->depth)
+		if ((ray->map_x >= data->map->width ||ray->map_x < 0)
+			 || (ray->map_y >= data->map->depth || ray->map_y < 0))
 		{
 			ray->hit = 1;
 			return ;
 		}
-		if (data->map->map2d[(int)ray->map_x][(int)ray->map_y] > 0)
+		printf("x: %d", ray->map_x);
+		printf("y: %d", ray->map_y);
+		if (data->map->map2d[ray->map_x][ray->map_y] > 0)
 			ray->hit = 1;
 	}
 }
@@ -83,11 +85,11 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y)
 {
 	if (ray_dir_x == 0)
-		ray->delta_dist_x = 1;
+		ray->delta_dist_x = 1e30;
 	else
 		ray->delta_dist_x = fabs(1 / ray_dir_x);
 	if (ray_dir_y == 0)
-		ray->delta_dist_y = 1;
+		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
 	if (ray_dir_x < 0)
@@ -110,10 +112,8 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y + 1.0 - data->pos_y) * ray->delta_dist_y;
 	}
-	printf("dist_x %f\n", ray->delta_dist_x);
-	printf("delta x %f\n", ray->side_dist_x);
-	printf("dist y %f\n", ray->delta_dist_y);
-	printf("delta y%f\n", ray->side_dist_y);
+	printf("pos_x %f\n", data->pos_x);
+	printf("pos y %f\n", data->pos_y);
 	dda(data, ray);
 }
 
@@ -130,6 +130,8 @@ void	cast_ray(t_data *data, t_rays *ray)
 		camera_x = (2 * x) / ((double)WIDTH - 1);
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
+		printf("x %f\n", ray_dir_x);
+		printf("y %f\n", ray_dir_y);
 		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
 		if (ray->side == 0)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
@@ -202,6 +204,10 @@ int	init_screen(t_map *map)
 	data->map = map;
 	data->pos_x = map->px;
 	data->pos_y = map->py;
+	data->dir_x = -1;
+	data->dir_y = 0;
+	data->plane_x = 0;
+	data->plane_y = 0.66;
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!data->mlx)
 	{
