@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/19 17:54:23 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 13:52:00 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,13 @@ void	game_loop(t_data *data)
 	t_rays	*ray;
 
 	ray = NULL;
+	ray = ft_calloc(1, sizeof(t_rays));
+	if (!ray)
+	{
+		free(data);
+		mlx_terminate(data->mlx);
+		ft_error("ray init", data->map);
+	}
 	init_ray_struct(ray, data);
 	cast_ray(data, ray);
 }
