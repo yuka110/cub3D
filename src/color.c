@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 14:20:04 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 14:24:33 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:55:43 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int32_t	ft_color_one(t_data *data, t_rays *ray)
 	// 	col.c = ft_pixel(0, 0, 0);
 	// else
 	col = ft_pixel(255, 255, 255);
-	printf("%x\n", col);
 	return (col);
 }
 

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 14:54:18 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 15:25:53 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	calc_line(t_data *data, t_rays *ray, int x)
 	int	end;
 
 	line_h = (int)(HEIGHT / ray->perp_wall_dist);
-	// printf("ray->perp_wall_dist: %f\n", ray->perp_wall_dist);
 	start = -line_h / 2 + HEIGHT / 2;
 	if (start < 0)
 		start = 0;
@@ -67,8 +66,6 @@ void	dda(t_data *data, t_rays *ray)
 			ray->hit = 1;
 			return ;
 		}
-		printf("x: %d", ray->map_x);
-		printf("y: %d", ray->map_y);
 		if (data->map->map2d[ray->map_x][ray->map_y] > 0)
 			ray->hit = 1;
 	}
@@ -92,6 +89,9 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->delta_dist_y = 1e30;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
+	printf("x %f ", ray->delta_dist_x);
+	printf("y %f\n", ray->delta_dist_y);
+
 	if (ray_dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -112,8 +112,6 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y + 1.0 - data->pos_y) * ray->delta_dist_y;
 	}
-	printf("pos_x %f\n", data->pos_x);
-	printf("pos y %f\n", data->pos_y);
 	dda(data, ray);
 }
 
@@ -127,11 +125,9 @@ void	cast_ray(t_data *data, t_rays *ray)
 	x = 0;
 	while (x < WIDTH)
 	{
-		camera_x = (2 * x) / ((double)WIDTH - 1);
+		camera_x = 2 * x / ((double)WIDTH) - 1;
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
-		printf("x %f\n", ray_dir_x);
-		printf("y %f\n", ray_dir_y);
 		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
 		if (ray->side == 0)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
