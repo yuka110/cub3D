@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 14:20:04 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/19 16:15:35 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:24:33 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ static int	ft_pixel(int r, int g, int b)
 
 int32_t	ft_color_one(t_data *data, t_rays *ray)
 {
-	t_color	col;
+	uint32_t	col;
 
-	if (data->map->map2d[ray->map_y][ray->map_x] == '1')
-		col.c = ft_pixel(0, 0, 0);
-	else
-		col.c = ft_pixel(255, 255, 255);
-	return (col.c);
+	(void)ray;
+	(void)data;
+	// if (data->map->map2d[ray->map_y][ray->map_x] == '1')
+	// 	col.c = ft_pixel(0, 0, 0);
+	// else
+	col = ft_pixel(255, 255, 255);
+	printf("%x\n", col);
+	return (col);
 }
 
 uint32_t	ft_color_two(int *color)

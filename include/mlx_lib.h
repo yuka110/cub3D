@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/19 17:50:46 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:10:34 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void		cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 				double ray_dir_y);
 void		init_ray_struct(t_rays *ray, t_data *data);
 void		dda(t_data *data, t_rays *ray);
-void		calc_line(t_data *data, t_rays *ray);
+void		calc_line(t_data *data, t_rays *ray, int x);
 int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
-void		paint_line(t_data *data, t_rays *ray, int start, int end);
+void		paint_line(t_data *data, t_rays *ray, int start, int end, int x);
 
 
 // int		test_screen(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/04 15:19:33 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/20 14:07:33 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	width_depth(char **tmp, t_map *map, int i, int k)
 		if (tmp[i][k] == '1')
 		{
 			map->depth++;
-			if (ft_strlen(tmp[i]) - 1 > map->width)
+			if ((int)ft_strlen(tmp[i]) - 1 > map->width)
 				map->width = ft_strlen(tmp[i]) - 1;
 		}
 		i++;

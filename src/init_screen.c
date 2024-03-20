@@ -6,44 +6,43 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 14:02:52 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:36:38 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-void	paint_line(t_data *data, t_rays *ray, int start, int end)
+void	paint_line(t_data *data, t_rays *ray, int start, int end, int x)
 {
 	int	y;
 	int	y_max;
 
 	y = start;
 	y_max = end;
-	if (y >= 0)
+	while (y < y_max)
 	{
-		while (y < y_max)
-		{
-			mlx_put_pixel(data->img, data->pos_x, y, ft_color_one(data, ray));
-			y++;
-		}
+		printf("HERE\n");
+		mlx_put_pixel(data->img, x, y, ft_color_one(data, ray));
+		y++;
 	}
 }
 
-void	calc_line(t_data *data, t_rays *ray)
+void	calc_line(t_data *data, t_rays *ray, int x)
 {
 	int	line_h;
 	int	start;
 	int	end;
 
 	line_h = (int)(HEIGHT / ray->perp_wall_dist);
+	// printf("ray->perp_wall_dist: %f\n", ray->perp_wall_dist);
 	start = -line_h / 2 + HEIGHT / 2;
 	if (start < 0)
 		start = 0;
 	end = line_h / 2 + HEIGHT / 2;
 	if (end >= HEIGHT)
 		end = HEIGHT - 1;
-	paint_line(data, ray, start, end);
+	paint_line(data, ray, start, end, x);
 }
 
 void	dda(t_data *data, t_rays *ray)
@@ -63,12 +62,12 @@ void	dda(t_data *data, t_rays *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_x > data->map->width || ray->map_y > data->map->depth)
+		if (ray->map_x >= data->map->width || ray->map_y >= data->map->depth)
 		{
 			ray->hit = 1;
 			return ;
 		}
-		if (data->map->map2d[ray->map_x][ray->map_y] > 0)
+		if (data->map->map2d[(int)ray->map_x][(int)ray->map_y] > 0)
 			ray->hit = 1;
 	}
 }
@@ -84,11 +83,11 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 			double ray_dir_y)
 {
 	if (ray_dir_x == 0)
-		ray->delta_dist_x = 1e30;
+		ray->delta_dist_x = 1;
 	else
 		ray->delta_dist_x = fabs(1 / ray_dir_x);
 	if (ray_dir_y == 0)
-		ray->delta_dist_y = 1e30;
+		ray->delta_dist_y = 1;
 	else
 		ray->delta_dist_y = fabs(1 / ray_dir_y);
 	if (ray_dir_x < 0)
@@ -111,6 +110,10 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y + 1.0 - data->pos_y) * ray->delta_dist_y;
 	}
+	printf("dist_x %f\n", ray->delta_dist_x);
+	printf("delta x %f\n", ray->side_dist_x);
+	printf("dist y %f\n", ray->delta_dist_y);
+	printf("delta y%f\n", ray->side_dist_y);
 	dda(data, ray);
 }
 
@@ -124,8 +127,7 @@ void	cast_ray(t_data *data, t_rays *ray)
 	x = 0;
 	while (x < WIDTH)
 	{
-		//calc ray position and direction
-		camera_x = (2 * x) / ((double)WIDTH - 1); //x coordinate in camera space
+		camera_x = (2 * x) / ((double)WIDTH - 1);
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
 		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
@@ -133,7 +135,7 @@ void	cast_ray(t_data *data, t_rays *ray)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 		else
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		calc_line(data, ray);
+		calc_line(data, ray, x);
 		x++;
 	}
 }
@@ -187,6 +189,7 @@ void	game_loop(t_data *data)
 	}
 	init_ray_struct(ray, data);
 	cast_ray(data, ray);
+	free(ray);
 }
 
 int	init_screen(t_map *map)
