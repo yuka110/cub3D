@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 17:17:46 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/20 18:10:32 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,20 +135,6 @@ void	cast_ray(t_data *data, t_rays *ray)
 	}
 }
 
-void	ft_hooks(mlx_key_data_t k, void *param)
-{
-	t_data	*data;
-
-	data = param;
-	k.key = MLX_KEY_ESCAPE;
-	if (mlx_is_key_down(data->mlx, k.key))
-	{
-		mlx_close_window(data->mlx);
-		free(data);
-		exit(EXIT_SUCCESS);
-	}
-}
-
 void	draw_layout(t_data *data, t_map *map)
 {
 	int	x;
@@ -178,8 +164,8 @@ void	game_loop(t_data *data)
 	ray = ft_calloc(1, sizeof(t_rays));
 	if (!ray)
 	{
-		free(data);
 		mlx_terminate(data->mlx);
+		free(data);
 		ft_error("ray init", data->map);
 	}
 	init_ray_struct(ray, data);

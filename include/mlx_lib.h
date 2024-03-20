@@ -6,12 +6,16 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 14:10:34 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/20 18:31:16 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_LIB_H
 # define MLX_LIB_H
+
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -60,8 +64,8 @@ typedef struct s_data
 //init_screen
 int			init_screen(t_map *map);
 void		init_loop(t_data *data);
+void		draw_layout(t_data *data, t_map *map);
 void		game_loop(t_data *data);
-void		ft_hooks(mlx_key_data_t k, void *param);
 void		cast_ray(t_data *data, t_rays *ray);
 void		cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 				double ray_dir_y);
@@ -72,7 +76,8 @@ int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
 void		paint_line(t_data *data, t_rays *ray, int start, int end, int x);
 
+//hooks
+void	ft_hooks(mlx_key_data_t k, void *param);
 
-// int		test_screen(t_map *map);
 
 #endif
