@@ -6,7 +6,11 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
+<<<<<<< HEAD
 /*   Updated: 2024/03/21 11:10:02 by evoronin      ########   odam.nl         */
+=======
+/*   Updated: 2024/03/21 11:12:08 by yitoh         ########   odam.nl         */
+>>>>>>> 5d1d824 (norm a bit)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +98,7 @@ t_map	*ft_initmap(char **tmp)
 		ft_freearrs(tmp);
 		ft_error("map struct malloc failed", NULL);
 	}
-	map->map2d = parse_map(tmp, map);
+	map->map2d = parse_map(tmp, map, 0, 0);
 	if (!map->map2d)
 	{
 		ft_freearrs(tmp);

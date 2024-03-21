@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/20 14:03:11 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/21 11:01:29 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_parsecub(char *cubfile);
 int		ft_checkmap(char **tmp, int i, int k);
 
 //parsemap
-int		**parse_map(char **tmp, t_map *map);
+int		**parse_map(char **tmp, t_map *map, int row, int i);
 t_map	*ft_initmap(char **tmp);
 
 

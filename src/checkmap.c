@@ -6,7 +6,11 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
+<<<<<<< HEAD
 /*   Updated: 2024/03/21 10:54:58 by evoronin      ########   odam.nl         */
+=======
+/*   Updated: 2024/03/21 11:12:04 by yitoh         ########   odam.nl         */
+>>>>>>> 5d1d824 (norm a bit)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +39,10 @@ int	check_texture(char *png, int k)
 	return (free(file), 0);
 }
 
-int	check_color(char *color, int k)
+int	count_colors(char *color, int k)
 {
-	char	**arr;
 	int		code;
 
-	if (!ft_strchr(" \t", color[k]))
-		return (1);
 	code = 0;
 	while (color[k])
 	{
@@ -51,14 +52,24 @@ int	check_color(char *color, int k)
 	}
 	if (code != 2)
 		return (1);
+	return (0);
+}
+
+int	check_color(char *color, int k)
+{
+	char	**arr;
+	int		c_code;
+
+	if (!ft_strchr(" \t", color[k]) || count_color(color, k))
+		return (1);
 	arr = ft_split(color, ',');
 	if (!arr)
 		return (1);
 	k = 0;
 	while (arr[k])
 	{
-		code = ft_atoi(arr[k]);
-		if (code < 0 || code > 255)
+		c_code = ft_atoi(arr[k]);
+		if (c_code < 0 || c_code > 255)
 			return (ft_freearrs(arr), 1);
 		k++;
 	}
@@ -116,7 +127,6 @@ int	check_others(char **tmp, int i, int k, int players)
 	return (0);
 }
 
-//still need to check if there is duplicate player
 int	ft_checkmap(char **tmp, int i, int k)
 {
 	while (tmp[i])
