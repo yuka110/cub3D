@@ -6,7 +6,7 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/03/21 10:48:50 by evoronin      ########   odam.nl          #
+#    Updated: 2024/03/21 11:09:40 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC = src/main.c\
 	  src/checkmap.c\
 	  src/parsemap.c\
 	  src/cleanup.c\
-	  src/testprint.c\
 	  src/color.c\
 	  src/init_screen.c\
 	  src/hooks.c\
