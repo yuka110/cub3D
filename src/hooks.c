@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/21 10:54:06 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/21 11:17:40 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 // void	move_player(mlx_key_data_t k, keys_t key, t_data *data)
 // {
 // 	if (mlx_is_key_down(data->mlx, key) && k.action == MLX_REPEAT)
+// 	{
+// 		if (data->map)
 // 		data->pos_y 
+// 	}
 // 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_REPEAT)
 // 		data->dir_
 // 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) && k.action == MLX_REPEAT)

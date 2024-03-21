@@ -6,11 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-<<<<<<< HEAD
-/*   Updated: 2024/03/21 10:54:58 by evoronin      ########   odam.nl         */
-=======
-/*   Updated: 2024/03/21 11:12:04 by yitoh         ########   odam.nl         */
->>>>>>> 5d1d824 (norm a bit)
+/*   Updated: 2024/03/21 11:18:19 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +56,7 @@ int	check_color(char *color, int k)
 	char	**arr;
 	int		c_code;
 
-	if (!ft_strchr(" \t", color[k]) || count_color(color, k))
+	if (!ft_strchr(" \t", color[k]) || count_colors(color, k))
 		return (1);
 	arr = ft_split(color, ',');
 	if (!arr)
