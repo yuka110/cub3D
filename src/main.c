@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/20 18:18:35 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/21 10:54:37 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 		ft_error("number of argument is not good", NULL);
 	map = ft_init(av[1]);
 	ft_printf("parsing is done:)\n");
-	if(init_screen(map) != 0)
+	if (init_screen(map) != 0)
 		ft_error("MLX error", NULL);
 	ft_cleanup(map);
 }

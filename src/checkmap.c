@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/09 11:46:11 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/21 10:54:58 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	ft_checkmap(char **tmp, int i, int k)
 				&& (check_color(tmp[i], k + 1)))
 			return (ft_printf("color\n"), 1);
 		else if (!ft_strchr("NSWEFC\n", tmp[i][k]) && check_nbr(tmp, i, k))
-			return (ft_printf("nbr\n"),1);
+			return (ft_printf("nbr\n"), 1);
 		i++;
 	}
 	if (check_others(tmp, i - 1, 0, 0))

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/20 14:07:33 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/21 10:57:08 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	assign_posvalue(char c, t_map *map, int i, int row)
 	return (-1);
 }
 
-int	*strcpy_atoi(int *dst, char *src, t_map * map, int row)
+int	*strcpy_atoi(int *dst, char *src, t_map *map, int row)
 {
 	int	i;
 

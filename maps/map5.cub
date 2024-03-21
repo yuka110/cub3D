@@ -1,0 +1,10 @@
+NO ./textures/pinkN.png
+SO ./textures/blueS.png
+WE ./textures/greenW.png
+EA ./textures/orangeE.png
+F 255,100,0
+C 110,30,100
+
+1111
+1N01
+1111

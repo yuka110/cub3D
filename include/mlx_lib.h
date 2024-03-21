@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 18:31:16 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/21 10:58:06 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_rays
 	int			step_y;
 	int			hit;
 	int			side;
+	int			start;
+	int			end;
 }	t_rays;
 
 typedef struct s_data
@@ -74,10 +76,12 @@ void		dda(t_data *data, t_rays *ray);
 void		calc_line(t_data *data, t_rays *ray, int x);
 int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
-void		paint_line(t_data *data, t_rays *ray, int start, int end, int x);
+void		paint_line(t_data *data, t_rays *ray, int x);
+void		find_delta(t_rays *ray, double ray_dir_x,
+				double ray_dir_y);
 
 //hooks
-void	ft_hooks(mlx_key_data_t k, void *param);
+void		ft_hooks(mlx_key_data_t k, void *param);
 
 
 #endif

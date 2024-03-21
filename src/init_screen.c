@@ -6,174 +6,24 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/20 18:10:32 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/21 11:02:52 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-void	paint_line(t_data *data, t_rays *ray, int start, int end, int x)
-{
-	int	y;
-	int	y_max;
-
-	y = start;
-	y_max = end;
-	while (y < y_max)
-	{
-		mlx_put_pixel(data->img, x, y, ft_color_one(data, ray));
-		y++;
-	}
-}
-
-void	calc_line(t_data *data, t_rays *ray, int x)
-{
-	int	line_h;
-	int	start;
-	int	end;
-
-	line_h = (int)(HEIGHT / ray->perp_wall_dist);
-	start = -line_h / 2 + HEIGHT / 2;
-	if (start < 0)
-		start = 0;
-	end = line_h / 2 + HEIGHT / 2;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	paint_line(data, ray, start, end, x);
-}
-
-void	dda(t_data *data, t_rays *ray)
-{
-	ray->hit = 0;
-	while (ray->hit == 0)
-	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
-		if (data->map->map2d[ray->map_y][ray->map_x] > 0)
-			ray->hit = 1;
-	}
-}
-
-void	init_ray_struct(t_rays *ray, t_data *data)
-{
-	ray->hit = 0;
-	ray->map_x = data->pos_x;
-	ray->map_y = data->pos_y;
-}
-
-void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y)
-{
-	if (ray_dir_x == 0)
-		ray->delta_dist_x = 1e30;
-	else
-		ray->delta_dist_x = fabs(1 / ray_dir_x);
-	if (ray_dir_y == 0)
-		ray->delta_dist_y = 1e30;
-	else
-		ray->delta_dist_y = fabs(1 / ray_dir_y);
-	if (ray_dir_x < 0)
-	{
-		ray->step_x = -1;
-		ray->side_dist_x = (data->pos_x - ray->map_x) * ray->delta_dist_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - data->pos_x) * ray->delta_dist_x;
-	}
-	if (ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = (data->pos_y - ray->map_y) * ray->delta_dist_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - data->pos_y) * ray->delta_dist_y;
-	}
-	dda(data, ray);
-}
-
-void	cast_ray(t_data *data, t_rays *ray)
-{
-	int		x;
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		ray->map_x = data->pos_x;
-		ray->map_y = data->pos_y;
-		camera_x = 2 * x / ((double)WIDTH) - 1;
-		ray_dir_x = data->dir_x + data->plane_x * camera_x;
-		ray_dir_y = data->dir_y + data->plane_y * camera_x;
-		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
-		if (ray->side == 0)
-		{
-			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
-		}
-		else
-		{
-			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		}
-		calc_line(data, ray, x);
-		x++;
-	}
-}
-
-void	draw_layout(t_data *data, t_map *map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (y < HEIGHT / 2)
-				mlx_put_pixel(data->img, x, y, ft_color_two(map->ceiling));
-			else
-				mlx_put_pixel(data->img, x, y, ft_color_two(map->floor));
-			x++;
-		}
-		y++;
-	}
-}
-
 void	game_loop(t_data *data)
 {
-	t_rays	*ray;
+	t_rays	ray;
 
-	ray = NULL;
-	ray = ft_calloc(1, sizeof(t_rays));
-	if (!ray)
-	{
-		mlx_terminate(data->mlx);
-		free(data);
-		ft_error("ray init", data->map);
-	}
-	init_ray_struct(ray, data);
-	cast_ray(data, ray);
-	free(ray);
+	ray.hit = 0;
+	ray.map_x = data->pos_x;
+	ray.map_y = data->pos_y;
+	cast_ray(data, &ray);
 }
 
-int	init_screen(t_map *map)
+t_data	*init_data(t_map *map)
 {
 	t_data	*data;
 
@@ -187,6 +37,14 @@ int	init_screen(t_map *map)
 	data->dir_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0.66;
+	return (data);
+}
+
+int	init_screen(t_map *map)
+{
+	t_data	*data;
+
+	data = init_data(map);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!data->mlx)
 	{
