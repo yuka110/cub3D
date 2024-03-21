@@ -6,11 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-<<<<<<< HEAD
-/*   Updated: 2024/03/21 11:10:02 by evoronin      ########   odam.nl         */
-=======
-/*   Updated: 2024/03/21 11:12:08 by yitoh         ########   odam.nl         */
->>>>>>> 5d1d824 (norm a bit)
+/*   Updated: 2024/03/21 11:30:58 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
