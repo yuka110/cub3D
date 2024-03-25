@@ -6,44 +6,61 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/25 11:57:55 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/25 14:54:42 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-// void	move_player(mlx_key_data_t k, t_data *data)
+//prob need to add sin cos + if condition should be revised
+// void	move_updown(mlx_key_data_t k, t_data *data, int **map)
 // {
-// 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && k.action == MLX_REPEAT)
+// 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && k.action == MLX_PRESS)
 // 	{
-// 		if (!(data->map->map2d[(int)data->pos_y - 1][(int)data->pos_x]))
-// 		{
-// 			data->pos_x += sin(data->dir_x) * 3;
-// 			data->pos_y += sin(data->dir_y) * 3;
-// 			draw_layout(data, data->map);
-// 			game_loop(data);
-// 		}
+// 		if (!(map[(int)(data->pos_y + (data->dir_y * MV_SP))][(int)data->pos_x]))
+// 			data->pos_y += data->dir_y * MV_SP;
+// 		if (!(map[(int)data->pos_y][(int)(data->pos_x + (data->dir_x * MV_SP))]))
+// 			data->pos_x += data->dir_x * MV_SP;
+// 		draw_layout(data, data->map);
+// 		game_loop(data);
 // 	}
-// 	// else if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_REPEAT)
-// 	// 	data->dir_
-// 	else if (mlx_is_key_down(data->mlx, MLX_KEY_S) && k.action == MLX_REPEAT)
+// 	else if (mlx_is_key_down(data->mlx, MLX_KEY_S) && k.action == MLX_PRESS)
 // 	{
-// 		if (!(data->map->map2d[(int)data->pos_y + 1][(int)data->pos_x]))
-// 		{
-// 			data->pos_y -= sin(data->dir_y) * 3;
-// 			data->pos_x -= sin(data->dir_x) * 3;
-// 			draw_layout(data, data->map);
-// 			game_loop(data);
 
-// 		}
+// 		if (!(map[(int)(data->pos_y - (data->dir_y * MV_SP))][(int)data->pos_x]))
+// 			data->pos_y -= data->dir_y * MV_SP;
+// 		if (!(map[(int)data->pos_y][(int)(data->pos_x - (data->dir_x * MV_SP))]))
+// 			data->pos_x -= data->dir_x * MV_SP;
+// 		draw_layout(data, data->map);
+// 		game_loop(data);
 // 	}
-// 	// if (mlx_is_key_down(data->mlx, MLX_KEY_D) && k.action == MLX_REPEAT)
-// 	// {
-// 	// 	data->dir_y -= 3 * (M_PI / 180);
-// 	// 	draw_layout(data, data->map);
-// 	// 	game_loop(data);
-// 	// }
+// }
+
+// void	move_side(mlx_key_data_t k, t_data *data, int **map)
+// {
+// 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_PRESS)
+// 	{
+// 		if ((data->pos_x + (data->dir_y * MV_SP)) >= 0
+// 			&& (data->pos_x + (data->dir_y * MV_SP)) < data->map->width
+// 			&& !(map[(int)data->pos_y][(int)(data->pos_x + (data->dir_y * MV_SP))]))
+// 			data->pos_x += data->dir_y * MV_SP;
+// 		if (data->pos_y + (data->dir_x * MV_SP) >= 0
+// 			&& data->pos_y + (data->dir_x * MV_SP) < data->map->depth
+// 			&&!(map[(int)(data->pos_y + (data->dir_x * MV_SP))][(int)data->pos_x]))
+// 			data->pos_y += data->dir_x * MV_SP;
+// 		draw_layout(data, data->map);
+// 		game_loop(data);
+// 	}
+// 	else if (mlx_is_key_down(data->mlx, MLX_KEY_D) && k.action == MLX_PRESS)
+// 	{
+// 		if (!(map[(int)data->pos_y][(int)(data->pos_x - (data->dir_y * MV_SP))]))
+// 			data->pos_x -= data->dir_y * MV_SP;
+// 		if (!(map[(int)(data->pos_y - (data->dir_x * MV_SP))][(int)data->pos_x]))
+// 			data->pos_y -= data->dir_x * MV_SP;
+// 		draw_layout(data, data->map);
+// 		game_loop(data);
+// 	}
 // }
 
 void	rotate_view(t_data *data, int right)
@@ -74,5 +91,7 @@ void	ft_hooks(mlx_key_data_t k, void *param)
 		rotate_view(data, true);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) && k.action == MLX_REPEAT)
 		rotate_view(data, false);
-	// move_player(k, data);
+	// move_updown(k, data, data->map->map2d);
+	// move_side(k, data, data->map->map2d);
+
 }

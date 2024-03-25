@@ -6,16 +6,19 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/21 10:58:06 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/25 14:36:54 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_LIB_H
 # define MLX_LIB_H
 
-#ifndef M_PI
-    #define M_PI 3.14159265358979323846
-#endif
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+#  ifndef MV_SP
+#   define MV_SP 0.5
+#  endif
+# endif
 
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
