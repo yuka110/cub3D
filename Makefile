@@ -6,7 +6,7 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/03/21 11:09:40 by evoronin      ########   odam.nl          #
+#    Updated: 2024/03/28 11:25:16 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC = src/main.c\
 	  src/init_screen.c\
 	  src/hooks.c\
 	  src/draw.c\
-	  src/raycasting.c
+	  src/raycasting.c\
+	  src/texture.c
 
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

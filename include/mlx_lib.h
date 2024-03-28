@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/21 10:58:06 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 11:54:45 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ void		find_delta(t_rays *ray, double ray_dir_x,
 
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
+//texture
+uint32_t    find_pixel(t_data *data, uint32_t x, uint32_t y);
+int			ft_pixel(int r, int g, int b);
+
 
 
 #endif
