@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 13:33:42 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 16:15:00 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 
 	y = ray->start;
 	y_max = ray->end;
+	fill_texture(data, ray);
 	if (ray->side == 0)
 		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
@@ -37,7 +38,7 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 	{
 		t_y = (int)tex_pos & (TEXHEIGHT - 1);
 		tex_pos += step;
-		col = find_pixel(data, ray, t_x, t_y);
+		col = find_pixel(ray, t_x, t_y);
 		mlx_put_pixel(data->img, x, y, col);
 		y++;
 	}

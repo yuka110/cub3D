@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 13:34:22 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 16:15:04 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,31 @@ typedef struct s_color
 	int	c;
 }	t_color;
 
+
+typedef struct s_wall
+{
+	mlx_texture_t	*tex;
+}	t_wall;
+
+
 typedef struct s_rays
 {
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		perp_wall_dist;
-	int			step_x;
-	int			step_y;
-	int			hit;
-	int			side;
-	int			start;
-	int			end;
-	int			ray_dir_x;
-	int			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				start;
+	int				end;
+	int				ray_dir_x;
+	int				ray_dir_y;
+	t_wall			*walls;
 }	t_rays;
 
 typedef struct s_data
@@ -85,8 +93,9 @@ void		find_delta(t_rays *ray);
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
 //texture
-uint32_t	find_pixel(t_data *data, t_rays *ray, uint32_t x, uint32_t y);
+uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);
+void		fill_texture(t_data *data, t_rays *ray);
 
 
 
