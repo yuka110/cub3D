@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/25 14:36:54 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/28 16:24:07 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
+#  define TEXWIDTH 64
+#  define TEXHEIGHT 64
 #  ifndef MV_SP
 #   define MV_SP 0.5
-#  endif
+#endif
 # endif
 
 # include "../include/cub3D.h"
@@ -34,21 +36,31 @@ typedef struct s_color
 	int	c;
 }	t_color;
 
+
+typedef struct s_wall
+{
+	mlx_texture_t	*tex;
+}	t_wall;
+
+
 typedef struct s_rays
 {
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		perp_wall_dist;
-	int			step_x;
-	int			step_y;
-	int			hit;
-	int			side;
-	int			start;
-	int			end;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				start;
+	int				end;
+	int				ray_dir_x;
+	int				ray_dir_y;
+	t_wall			*walls;
 }	t_rays;
 
 typedef struct s_data
@@ -72,19 +84,22 @@ void		init_loop(t_data *data);
 void		draw_layout(t_data *data, t_map *map);
 void		game_loop(t_data *data);
 void		cast_ray(t_data *data, t_rays *ray);
-void		cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-				double ray_dir_y);
+void		cast_ray_next(t_rays *ray, t_data *data);
 void		init_ray_struct(t_rays *ray, t_data *data);
 void		dda(t_data *data, t_rays *ray);
 void		calc_line(t_data *data, t_rays *ray, int x);
 int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
-void		paint_line(t_data *data, t_rays *ray, int x);
-void		find_delta(t_rays *ray, double ray_dir_x,
-				double ray_dir_y);
+void		paint_line(t_data *data, t_rays *ray, int x, int line_h);
+void		find_delta(t_rays *ray);
 
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
+//texture
+uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y);
+int			ft_pixel(int r, int g, int b);
+void		fill_texture(t_data *data, t_rays *ray);
+
 
 
 #endif
