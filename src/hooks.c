@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/25 14:54:42 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/28 16:51:08 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	rotate_view(t_data *data, int right)
 		rotspeed = -5;
 	data->dir_y += rotspeed * (M_PI / 180);
 	draw_layout(data, data->map);
-	game_loop(data);
+	game_loop(*data);
 }
 
 void	ft_hooks(mlx_key_data_t k, void *param)

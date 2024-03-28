@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/01 15:14:45 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/25 11:05:20 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/28 16:50:42 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void	parse_texture(char **tmp, t_map **map, int i, int k)
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
 		if (!ft_strncmp(tmp[i] + k, "NO", 2))
-			(*map)->n_tex = dup_texture(tmp[i], k);
+			(*map)->n_tex = dup_texture(tmp[i], k + 3);
 		else if (!ft_strncmp(tmp[i] + k, "SO", 2))
-			(*map)->s_tex = dup_texture(tmp[i], k);
+			(*map)->s_tex = dup_texture(tmp[i], k + 3);
 		else if (!ft_strncmp(tmp[i] + k, "WE", 2))
-			(*map)->w_tex = dup_texture(tmp[i], k);
+			(*map)->w_tex = dup_texture(tmp[i], k + 3);
 		else if (!ft_strncmp(tmp[i] + k, "EA", 2))
-			(*map)->e_tex = dup_texture(tmp[i], k);
+			(*map)->e_tex = dup_texture(tmp[i], k + 3);
 		i++;
 	}
 	if (!(*map)->n_tex || !(*map)->s_tex || !(*map)->e_tex || !(*map)->w_tex)

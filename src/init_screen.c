@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:48:29 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 17:29:11 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	game_loop(t_data data)
 	ray.walls[1].tex = NULL;
 	ray.walls[2].tex = NULL;
 	ray.walls[3].tex = NULL;
-	printf("e tex: %s\n", data.map->e_tex);
 	cast_ray(data, &ray);
 }
 

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:48:39 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 16:53:00 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
-#  define TEXWIDTH 64
-#  define TEXHEIGHT 64
+#  define TEXWIDTH 512
+#  define TEXHEIGHT 512
 #  ifndef MV_SP
 #   define MV_SP 0.5
 #endif

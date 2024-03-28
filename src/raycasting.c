@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:44:54 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:46:58 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 17:29:32 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	dda(t_data data, t_rays *ray)
 void	find_delta(t_rays *ray)
 {
 	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = 1e30;
+		ray->delta_dist_x = INFINITY;
 	else
 		ray->delta_dist_x = abs(1 / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = 1e30;
+		ray->delta_dist_y = INFINITY;
 	else
 		ray->delta_dist_y = abs(1 / ray->ray_dir_y);
 }
@@ -102,13 +102,9 @@ void	cast_ray(t_data data, t_rays *ray)
 		ray->ray_dir_y = data.dir_y + data.plane_y * camera_x;
 		cast_ray_next(ray, data);
 		if (ray->side == 0)
-		{
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
-		}
 		else
-		{
 			ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		}
 		calc_line(&data, ray, x);
 		x++;
 	}
