@@ -1,7 +1,7 @@
-NO ./textures/pinkN.png
-SO ./textures/blueS.png
-WE ./textures/greenW.png
-EA ./textures/orangeE.png
+NO ./textures/Brick_02-512x512.png
+SO ./textures/Brick_13-512x512.png
+WE ./textures/Brick_15-512x512.png
+EA ./textures/Brick_18-512x512.png
 F 255,100,0
 C 110,30,100
 

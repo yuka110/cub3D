@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:14:56 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 16:39:55 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 void	fill_texture(t_data *data, t_rays *ray)
 {
 	ray->walls[0].tex = mlx_load_png(data->map->e_tex);
+	printf("e: %s\n", data->map->e_tex);
 	ray->walls[1].tex = mlx_load_png(data->map->w_tex);
 	ray->walls[2].tex = mlx_load_png(data->map->s_tex);
 	ray->walls[3].tex = mlx_load_png(data->map->n_tex);
+	if (!ray->walls[0].tex || !ray->walls[1].tex || !ray->walls[2].tex
+		|| !ray->walls[3].tex)
+		ft_error("failed to open png", data->map);
 }
 
 uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
@@ -29,7 +33,10 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	if (ray->ray_dir_y >= 0 && ray->side == 1)
 		t = ray->walls[0].tex;
 	else if (ray->ray_dir_y <= 0 && ray->side == 1)
+	{
 		t = ray->walls[1].tex;
+		printf("HERE\n");
+	}
 	else if (ray->ray_dir_x >= 0 && ray->side == 0)
 		t = ray->walls[3].tex;
 	else

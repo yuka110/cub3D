@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:24:07 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 16:48:39 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ typedef struct s_data
 int			init_screen(t_map *map);
 void		init_loop(t_data *data);
 void		draw_layout(t_data *data, t_map *map);
-void		game_loop(t_data *data);
-void		cast_ray(t_data *data, t_rays *ray);
-void		cast_ray_next(t_rays *ray, t_data *data);
+void		game_loop(t_data data);
+void		cast_ray(t_data data, t_rays *ray);
+void		cast_ray_next(t_rays *ray, t_data data);
 void		init_ray_struct(t_rays *ray, t_data *data);
-void		dda(t_data *data, t_rays *ray);
+void		dda(t_data data, t_rays *ray);
 void		calc_line(t_data *data, t_rays *ray, int x);
 int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
