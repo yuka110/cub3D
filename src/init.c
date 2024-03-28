@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/28 11:43:19 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 13:22:11 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ t_map	*ft_init(char *cubfile)
 		ft_error("map is invalid", NULL);
 	}
 	map = ft_initmap(tmp);
-	// ft_printmap(map);
 	ft_freearrs(tmp);
 	return (map);
 }

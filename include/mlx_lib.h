@@ -6,16 +6,18 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 11:54:45 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 13:34:22 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_LIB_H
 # define MLX_LIB_H
 
-#ifndef M_PI
-    #define M_PI 3.14159265358979323846
-#endif
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+#  define TEXWIDTH 64
+#  define TEXHEIGHT 64
+# endif
 
 # include "../include/cub3D.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -46,6 +48,8 @@ typedef struct s_rays
 	int			side;
 	int			start;
 	int			end;
+	int			ray_dir_x;
+	int			ray_dir_y;
 }	t_rays;
 
 typedef struct s_data
@@ -69,21 +73,19 @@ void		init_loop(t_data *data);
 void		draw_layout(t_data *data, t_map *map);
 void		game_loop(t_data *data);
 void		cast_ray(t_data *data, t_rays *ray);
-void		cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-				double ray_dir_y);
+void		cast_ray_next(t_rays *ray, t_data *data);
 void		init_ray_struct(t_rays *ray, t_data *data);
 void		dda(t_data *data, t_rays *ray);
 void		calc_line(t_data *data, t_rays *ray, int x);
 int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
-void		paint_line(t_data *data, t_rays *ray, int x);
-void		find_delta(t_rays *ray, double ray_dir_x,
-				double ray_dir_y);
+void		paint_line(t_data *data, t_rays *ray, int x, int line_h);
+void		find_delta(t_rays *ray);
 
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
 //texture
-uint32_t    find_pixel(t_data *data, uint32_t x, uint32_t y);
+uint32_t	find_pixel(t_data *data, t_rays *ray, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);
 
 

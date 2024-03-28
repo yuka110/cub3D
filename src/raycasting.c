@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:44:54 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/21 11:01:41 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/28 13:08:14 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	calc_line(t_data *data, t_rays *ray, int x)
 	ray->end = line_h / 2 + HEIGHT / 2;
 	if (ray->end >= HEIGHT)
 		ray->end = HEIGHT - 1;
-	paint_line(data, ray, x);
+	paint_line(data, ray, x, line_h);
 }
 
 void	dda(t_data *data, t_rays *ray)
@@ -49,24 +49,22 @@ void	dda(t_data *data, t_rays *ray)
 	}
 }
 
-void	find_delta(t_rays *ray, double ray_dir_x,
-			double ray_dir_y)
+void	find_delta(t_rays *ray)
 {
-	if (ray_dir_x == 0)
+	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = 1e30;
 	else
-		ray->delta_dist_x = fabs(1 / ray_dir_x);
-	if (ray_dir_y == 0)
+		ray->delta_dist_x = abs(1 / ray->ray_dir_x);
+	if (ray->ray_dir_y == 0)
 		ray->delta_dist_y = 1e30;
 	else
-		ray->delta_dist_y = fabs(1 / ray_dir_y);
+		ray->delta_dist_y = abs(1 / ray->ray_dir_y);
 }
 
-void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
-			double ray_dir_y)
+void	cast_ray_next(t_rays *ray, t_data *data)
 {
-	find_delta(ray, ray_dir_x, ray_dir_y);
-	if (ray_dir_x < 0)
+	find_delta(ray);
+	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (data->pos_x - ray->map_x) * ray->delta_dist_x;
@@ -76,7 +74,7 @@ void	cast_ray_next(t_rays *ray, t_data *data, double ray_dir_x,
 		ray->step_x = 1;
 		ray->side_dist_x = (ray->map_x + 1.0 - data->pos_x) * ray->delta_dist_x;
 	}
-	if (ray_dir_y < 0)
+	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->side_dist_y = (data->pos_y - ray->map_y) * ray->delta_dist_y;
@@ -93,8 +91,6 @@ void	cast_ray(t_data *data, t_rays *ray)
 {
 	int		x;
 	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
 
 	x = 0;
 	while (x < WIDTH)
@@ -102,9 +98,9 @@ void	cast_ray(t_data *data, t_rays *ray)
 		ray->map_x = data->pos_x;
 		ray->map_y = data->pos_y;
 		camera_x = 2 * x / ((double)WIDTH) - 1;
-		ray_dir_x = data->dir_x + data->plane_x * camera_x;
-		ray_dir_y = data->dir_y + data->plane_y * camera_x;
-		cast_ray_next(ray, data, ray_dir_x, ray_dir_y);
+		ray->ray_dir_x = data->dir_x + data->plane_x * camera_x;
+		ray->ray_dir_y = data->dir_y + data->plane_y * camera_x;
+		cast_ray_next(ray, data);
 		if (ray->side == 0)
 		{
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
