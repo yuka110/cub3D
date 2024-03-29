@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 12:07:49 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 14:06:33 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void	game_loop(t_data *data)
 	ray.hit = 0;
 	ray.map_x = data->pos_x;
 	ray.map_y = data->pos_y;
-	ray.walls[0].tex = NULL;
-	ray.walls[1].tex = NULL;
-	ray.walls[2].tex = NULL;
-	ray.walls[3].tex = NULL;
 	cast_ray(data, &ray);
 }
 
