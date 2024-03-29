@@ -6,20 +6,20 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 17:29:11 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 12:07:49 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-void	game_loop(t_data data)
+void	game_loop(t_data *data)
 {
 	t_rays	ray;
 
 	ray.hit = 0;
-	ray.map_x = data.pos_x;
-	ray.map_y = data.pos_y;
+	ray.map_x = data->pos_x;
+	ray.map_y = data->pos_y;
 	ray.walls[0].tex = NULL;
 	ray.walls[1].tex = NULL;
 	ray.walls[2].tex = NULL;
@@ -71,7 +71,8 @@ int	init_screen(t_map *map)
 		ft_error("img init", map);
 	}
 	draw_layout(data, map);
-	game_loop(*data);
+		printf("data: %s\n", data->map->e_tex);
+	game_loop(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_key_hook(data->mlx, ft_hooks, data);
 	mlx_loop(data->mlx);

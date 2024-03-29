@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 16:54:36 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 12:05:29 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 
 	y = ray->start;
 	y_max = ray->end;
-	fill_texture(data, ray);
 	if (ray->side == 0)
 		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else

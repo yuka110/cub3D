@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 17:30:46 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 12:02:40 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	fill_texture(t_data *data, t_rays *ray)
 		|| !ray->walls[3].tex)
 		ft_error("failed to open png", data->map);
 }
+
 //fix the side x and y
 uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 {
@@ -43,13 +44,3 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	col.c = ft_pixel(col.r, col.g, col.b);
 	return (col.c);
 }
-
-
-// if (c == 'N')
-// 		return (5);
-// 	if (c == 'E')
-// 		return (6);
-// 	if (c == 'S')
-// 		return (7);
-// 	if (c == 'W')
-// 		return (8);
