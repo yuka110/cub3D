@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 14:06:33 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 22:01:33 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	init_screen(t_map *map)
 		ft_error("img init", map);
 	}
 	draw_layout(data, map);
-		printf("data: %s\n", data->map->e_tex);
+		// printf("data: %s\n", data->map->e_tex);
 	game_loop(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_key_hook(data->mlx, ft_hooks, data);

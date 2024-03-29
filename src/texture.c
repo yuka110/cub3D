@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 16:27:44 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 21:58:36 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	col.r = t->pixels[(y * t->height + x) * t->bytes_per_pixel];
 	col.g = t->pixels[(y * t->height + x) * t->bytes_per_pixel + 1];
 	col.b = t->pixels[(y * t->height + x) * t->bytes_per_pixel + 2];
+	// printf ("color r:%d, g:%d, b:%d\n", col.r, col.g, col.b);
 	col.c = ft_pixel(col.r, col.g, col.b);
 	return (col.c);
 }

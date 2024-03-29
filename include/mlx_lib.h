@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 13:15:24 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/03/29 20:19:43 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #  define M_PI 3.14159265358979323846
 #  define TEXWIDTH 512
 #  define TEXHEIGHT 512
-#  ifndef MV_SP
-#   define MV_SP 0.5
-#endif
+#  define MV_SP 0.5
 # endif
 
 # include "../include/cub3D.h"
