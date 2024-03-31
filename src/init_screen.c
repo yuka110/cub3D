@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 22:01:33 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/03/31 18:31:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	game_loop(t_data *data)
 	ray.map_x = data->pos_x;
 	ray.map_y = data->pos_y;
 	cast_ray(data, &ray);
+	mlx_delete_texture(ray.walls[0].tex);
+	mlx_delete_texture(ray.walls[1].tex);
+	mlx_delete_texture(ray.walls[2].tex);
+	mlx_delete_texture(ray.walls[3].tex);
 }
 
 t_data	*init_data(t_map *map)
@@ -67,7 +71,6 @@ int	init_screen(t_map *map)
 		ft_error("img init", map);
 	}
 	draw_layout(data, map);
-		// printf("data: %s\n", data->map->e_tex);
 	game_loop(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_key_hook(data->mlx, ft_hooks, data);
