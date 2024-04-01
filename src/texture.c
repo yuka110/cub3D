@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/31 20:05:06 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/01 18:08:13 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,17 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	mlx_texture_t	*t;
 	t_color			col;
 
-	if (ray->ray_dir_y > 0 && ray->side == 1)
+	// if (ray->ray_dir_y > 0 && ray->side == 1)
+	// 	t = ray->walls[0].tex;
+	// else if (ray->ray_dir_y < 0 && ray->side == 1)
+	// 	t = ray->walls[1].tex;
+	// else if (ray->ray_dir_x > 0 && ray->side == 0)
+	// 	t = ray->walls[2].tex;
+	// else
+	// 	t = ray->walls[3].tex;
+	if (ray->ray_dir_y < 0 && ray->side == 1)
 		t = ray->walls[0].tex;
-	else if (ray->ray_dir_y < 0 && ray->side == 1)
+	else if (ray->ray_dir_y > 0 && ray->side == 1)
 		t = ray->walls[1].tex;
 	else if (ray->ray_dir_x > 0 && ray->side == 0)
 		t = ray->walls[2].tex;

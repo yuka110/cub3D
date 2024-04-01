@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/31 17:36:40 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/01 17:22:25 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 	tex_pos = (y - (HEIGHT / 2) + (line_h / 2)) * step;
 	t_x = (int)(wall_x * (double)TEXWIDTH);
 	// printf (" text_pos %f = %d - 350 + (%d/2) * %f\n", tex_pos, y, line_h, step);
-	// t_y is actually not moving -> either step is wrong or text_pos original value is too off
 	while (y < y_max)
 	{
 		t_y = (int)tex_pos & (TEXHEIGHT - 1);
@@ -45,7 +44,7 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 		y++;
 	}
 }
-
+//y = 100, height=300, line_h=100, texhight=50, step=0.5
 void	draw_layout(t_data *data, t_map *map)
 {
 	int	x;

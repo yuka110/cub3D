@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/31 18:31:27 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/01 16:32:52 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ t_data	*init_data(t_map *map)
 	data->dir_x = 0;
 	data->dir_y = 0;
 	if (map->map2d[map->py][map->px] == 5)
-		data->dir_y = 1;
+		data->dir_y = -1;
 	else if (map->map2d[map->py][map->px] == 6)
 		data->dir_x = 1;
 	else if (map->map2d[map->py][map->px] == 7)
-		data->dir_y = -1;
+		data->dir_y = 1;
 	else if (map->map2d[map->py][map->px] == 8)
 		data->dir_x = -1;
 	data->plane_x = 0;
