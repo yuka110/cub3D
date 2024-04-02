@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:44:54 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 20:46:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/02 17:38:48 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	find_delta(t_rays *ray)
 	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = INFINITY;
 	else
-		ray->delta_dist_x = abs(1 / ray->ray_dir_x);
+		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
 		ray->delta_dist_y = INFINITY;
 	else
-		ray->delta_dist_y = abs(1 / ray->ray_dir_y);
+		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
 
 void	cast_ray_next(t_rays *ray, t_data *data)

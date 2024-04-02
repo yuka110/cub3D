@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/29 20:19:43 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/02 17:37:12 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_rays
 	int				side;
 	int				start;
 	int				end;
-	int				ray_dir_x;
-	int				ray_dir_y;
+	double			ray_dir_x;
+	double			ray_dir_y;
 	t_wall			walls[4];
 }	t_rays;
 
