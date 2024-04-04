@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 14:28:30 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/04 16:07:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #  define TEXWIDTH 512
 #  define TEXHEIGHT 512
 #  define MV_SP 1
+#  define RT_SP 5
 # endif
 
 # include "../include/cub3D.h"
