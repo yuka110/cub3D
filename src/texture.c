@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   texture.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
+/*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/02 17:30:25 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/04 13:16:40 by elenavoroni   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	// 	t = ray->walls[2].tex;
 	// else
 	// 	t = ray->walls[3].tex;
-	if (ray->ray_dir_y < 0 && ray->side == 1)
-		t = ray->walls[0].tex;
-	else if (ray->ray_dir_y > 0 && ray->side == 1)
-		t = ray->walls[1].tex;
-	else if (ray->ray_dir_x > 0 && ray->side == 0)
-		t = ray->walls[2].tex;
-	else
+	if (ray->ray_dir_y >= 0 && ray->side == 1) //North
 		t = ray->walls[3].tex;
+	else if (ray->ray_dir_y <= 0 && ray->side == 1) //South
+		t = ray->walls[2].tex;
+	else if (ray->ray_dir_x >= 0 && ray->side == 0) //West
+		t = ray->walls[0].tex;
+	else
+		t = ray->walls[1].tex; //East
 	// width 
 	col.r = t->pixels[(y * t->width + x) * 4];
 	col.g = t->pixels[(y * t->width + x) * 4 + 1];

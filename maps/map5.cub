@@ -1,7 +1,7 @@
-NO textures/Brick_02-512x512.png
-SO textures/Brick_13-512x512.png
-WE textures/Brick_15-512x512.png
-EA textures/Brick_18-512x512.png
+NO textures/N.png
+SO textures/S.png
+WE textures/W.png
+EA textures/E.png
 F 255,100,0
 C 110,30,100
 
