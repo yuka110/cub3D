@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:44:54 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/02 17:38:48 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/04 18:30:10 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	dda(t_data *data, t_rays *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map->map2d[ray->map_y][ray->map_x] > 0)
+		if (data->map->map2d[ray->map_y][ray->map_x] == 1)
 			ray->hit = 1;
 	}
 }
