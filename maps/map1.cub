@@ -1,10 +1,10 @@
-NO textures/Brick_02-512x512.png
-SO textures/Brick_13-512x512.png
-WE textures/Brick_15-512x512.png
+NO textures/N.png
+SO textures/S.png
+WE textures/W.png
 
 F 192,247,176
 C 152,169,217
-EA textures/Brick_18-512x512.png
+EA textures/E.png
 
         1111111111111111111111111
         1000000000110000000000001
