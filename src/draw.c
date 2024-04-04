@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/02 17:37:21 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/04 14:43:07 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 
 	y = ray->start;
 	y_max = ray->end;
-	printf("%d\n", ray->side);
+	// printf("%d\n", ray->side);
 	if (ray->side == 0)
 		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wall_x = data->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
-	printf("%f %f %f\n", data->pos_y, ray->perp_wall_dist, ray->ray_dir_y);
+	// printf("%f %f %f\n", data->pos_y, ray->perp_wall_dist, ray->ray_dir_y);
 	wall_x -= floor(wall_x);
 	t_x = (int)(wall_x * (double)TEXWIDTH);
 	if (ray->side == 0 && ray->ray_dir_x > 0)

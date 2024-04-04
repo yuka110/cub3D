@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 13:16:40 by elenavoroni   ########   odam.nl         */
+/*   Updated: 2024/04/04 14:43:21 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 		t = ray->walls[0].tex;
 	else
 		t = ray->walls[1].tex; //East
-	// width 
 	col.r = t->pixels[(y * t->width + x) * 4];
 	col.g = t->pixels[(y * t->width + x) * 4 + 1];
 	col.b = t->pixels[(y * t->width + x) * 4 + 2];
