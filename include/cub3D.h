@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:21:27 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 13:27:29 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ t_map	*ft_initmap(char **tmp);
 
 //checkmap
 int		ft_checkmap(char **tmp, int i, int k);
+
+//checkmap2
+int		check_nbr(char **tmp, int i, int k, int players);
 
 //parsemap
 int		**parse_map(char **tmp, t_map *map, int row, int i);
