@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:26:28 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 13:30:50 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ int	count_colors(char *color, int k)
 	return (0);
 }
 
+int	ft_isdigitstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	check_color(char *color, int k)
 {
 	char	**arr;
@@ -68,9 +82,8 @@ int	check_color(char *color, int k)
 		i = 0;
 		while (arr[k][i] && ft_strchr(" \t\n", arr[k][i]))
 			i++;
-		if (!arr[k][i])
+		if (!arr[k][i] || ft_isdigitstr(arr[k] + i))
 			return (ft_freearrs(arr), 1);
-		printf("color %s\n", arr[k] + i);
 		c_code = ft_atoi(arr[k] + i);
 		if (c_code < 0 || c_code > 255)
 			return (ft_freearrs(arr), 1);
