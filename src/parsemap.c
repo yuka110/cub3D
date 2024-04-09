@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/28 16:25:02 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 14:00:03 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	**parse_map(char **tmp, t_map *map, int row, int i)
 	int	k;
 
 	width_depth(tmp, map, 0, 0);
+	if (!map->width || !map->depth)
+		return (NULL);
 	map->map2d = ft_calloc(map->depth + 1, sizeof (int *));
 	if (!map->map2d)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:30:50 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 13:53:05 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_isdigitstr(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i]) && !ft_strchr(" \t\n", s[i]))
 			return (1);
 		i++;
 	}
@@ -104,14 +104,14 @@ int	ft_checkmap(char **tmp, int i, int k)
 				|| !ft_strncmp(tmp[i] + k, "WE", 2)
 				|| !ft_strncmp(tmp[i] + k, "EA", 2))
 			&& check_texture(tmp[i], k + 2))
-			return (ft_printf("texture\n"), 1);
+			return (1);
 		else if ((tmp[i][k] == 'F' || tmp[i][k] == 'C')
 				&& (check_color(tmp[i], k + 1)))
-			return (ft_printf("color\n"), 1);
+			return (1);
 		else if (!ft_strchr("NSWEFC\n", tmp[i][k]))
 		{
-			if (check_nbr(tmp, i, k, 0))
-				return (ft_printf("nbr\n"), 1);
+			if (check_nbr(tmp + i, 0, k, 0))
+				return (1);
 			break ;
 		}
 		i++;
