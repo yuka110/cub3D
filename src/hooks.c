@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/04 18:54:47 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 11:30:57 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,21 @@ void	move_side(mlx_key_data_t k, t_data *data, int **map)
 	mv_y = 0;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_PRESS)
 	{
-		mv_x = sin(data->dir_y) * MV_SP;
-		mv_y = -cos(data->dir_y) * MV_SP;
+		// mv_x = sin(data->dir_y) * MV_SP;
+		// mv_y = -cos(data->dir_y) * MV_SP;
+		// mv_x = (1/data->dir_x) * MV_SP;
+		// mv_y = -(1/data->dir_y) * MV_SP;
+		mv_x = -data->plane_x * MV_SP;
+		mv_y = -data->plane_y * MV_SP;
 	}
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_D) && k.action == MLX_PRESS)
 	{
-		mv_x = -sin(data->dir_y) * MV_SP;
-		mv_y = cos(data->dir_y) * MV_SP;
+		// mv_x = -sin(data->dir_y) * MV_SP;
+		// mv_y = cos(data->dir_y) * MV_SP;
+		mv_x = data->plane_x * MV_SP;
+		mv_y = data->plane_y * MV_SP;
+		// mv_x = -(1/data->dir_x) * MV_SP;
+		// mv_y = (1/data->dir_y) * MV_SP;
 	}
 	if ((mv_x || mv_y) && (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
 		&& (map[(int)data->pos_y][(int)(data->pos_x + mv_x)] != 1))
