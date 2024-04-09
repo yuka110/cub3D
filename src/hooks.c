@@ -6,14 +6,13 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 11:30:57 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 11:47:07 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-//prob need to add sin cos + if condition should be revised
 void	move_updown(mlx_key_data_t k, t_data *data, int **map)
 {
 	double	mv_x;
@@ -37,7 +36,6 @@ void	move_updown(mlx_key_data_t k, t_data *data, int **map)
 		data->pos_x += mv_x;
 		data->pos_y += mv_y;
 		draw_layout(data, data->map);
-		// printf("change up down   x:%f y:%f mv_x %f, mv_y:%f\n", data->pos_x, data->pos_y, mv_x, mv_y);
 		game_loop(data);
 	}
 }
@@ -51,28 +49,19 @@ void	move_side(mlx_key_data_t k, t_data *data, int **map)
 	mv_y = 0;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_PRESS)
 	{
-		// mv_x = sin(data->dir_y) * MV_SP;
-		// mv_y = -cos(data->dir_y) * MV_SP;
-		// mv_x = (1/data->dir_x) * MV_SP;
-		// mv_y = -(1/data->dir_y) * MV_SP;
 		mv_x = -data->plane_x * MV_SP;
 		mv_y = -data->plane_y * MV_SP;
 	}
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_D) && k.action == MLX_PRESS)
 	{
-		// mv_x = -sin(data->dir_y) * MV_SP;
-		// mv_y = cos(data->dir_y) * MV_SP;
 		mv_x = data->plane_x * MV_SP;
 		mv_y = data->plane_y * MV_SP;
-		// mv_x = -(1/data->dir_x) * MV_SP;
-		// mv_y = (1/data->dir_y) * MV_SP;
 	}
 	if ((mv_x || mv_y) && (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
 		&& (map[(int)data->pos_y][(int)(data->pos_x + mv_x)] != 1))
 	{
 		data->pos_x += mv_x;
 		data->pos_y += mv_y;
-		// printf("change side   x:%f y:%f mv_x %f, mv_y:%f\n", data->pos_x, data->pos_y, mv_x, mv_y);
 		draw_layout(data, data->map);
 		game_loop(data);
 	}
@@ -95,7 +84,6 @@ void	rotate_view(t_data *data, int right)
 	data->dir_y = cp_dirx * sin(angle) + data->dir_y * cos(angle);
 	data->plane_x = data->plane_x * cos(angle) - data->plane_y * sin(angle);
 	data->plane_y = cp_planex * sin(angle) + data->plane_y * cos(angle);
-	// printf("angle %f, dirX %f, diry %f, planex %f, planey %f\n", angle, data->dir_x, data->dir_y, data->plane_x, data->plane_y);
 	draw_layout(data, data->map);
 	game_loop(data);
 }
