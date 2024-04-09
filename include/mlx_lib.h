@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 12:08:50 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 12:11:59 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int32_t		ft_color_one(t_data *data, t_rays *ray);
 uint32_t	ft_color_two(int *color);
 void		paint_line(t_data *data, t_rays *ray, int x, int line_h);
 void		find_delta(t_rays *ray);
+void		find_plane(t_map *map, t_data *data);
 
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
