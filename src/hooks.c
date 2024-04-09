@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 11:47:07 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:18:39 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	move_updown(mlx_key_data_t k, t_data *data, int **map)
 		mv_x = -(data->dir_x) * MV_SP;
 		mv_y = -(data->dir_y) * MV_SP;
 	}
-	if ((mv_x || mv_y) && (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
+	if ((mv_x || mv_y)
+		&& (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
 		&& (map[(int)data->pos_y][(int)(data->pos_x + mv_x)] != 1))
 	{
 		data->pos_x += mv_x;
@@ -57,7 +58,8 @@ void	move_side(mlx_key_data_t k, t_data *data, int **map)
 		mv_x = data->plane_x * MV_SP;
 		mv_y = data->plane_y * MV_SP;
 	}
-	if ((mv_x || mv_y) && (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
+	if ((mv_x || mv_y)
+		&& (map[(int)(data->pos_y + mv_y)][(int)data->pos_x] != 1)
 		&& (map[(int)data->pos_y][(int)(data->pos_x + mv_x)] != 1))
 	{
 		data->pos_x += mv_x;
