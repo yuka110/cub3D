@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/01 15:14:45 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:15:35 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:27:22 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char	*dup_texture(char *tmp, int k)
 {
 	char	*file;
 
+	while (ft_strchr(" \t", tmp[k]))
+		k++;
 	file = ft_strdup(tmp + k);
 	if (!file)
 		return (NULL);
@@ -74,13 +76,13 @@ void	parse_texture(char **tmp, t_map **map, int i, int k)
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
 		if (!ft_strncmp(tmp[i] + k, "NO", 2))
-			(*map)->n_tex = dup_texture(tmp[i], k + 3);
+			(*map)->n_tex = dup_texture(tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "SO", 2))
-			(*map)->s_tex = dup_texture(tmp[i], k + 3);
+			(*map)->s_tex = dup_texture(tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "WE", 2))
-			(*map)->w_tex = dup_texture(tmp[i], k + 3);
+			(*map)->w_tex = dup_texture(tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "EA", 2))
-			(*map)->e_tex = dup_texture(tmp[i], k + 3);
+			(*map)->e_tex = dup_texture(tmp[i], k + 2);
 		i++;
 	}
 	if (!(*map)->n_tex || !(*map)->s_tex || !(*map)->e_tex || !(*map)->w_tex)
