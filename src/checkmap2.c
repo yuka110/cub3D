@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/09 13:25:53 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 14:01:13 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:38:41 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 int	wall_closed(char **tmp, int i, int k)
 {
 	if (!ft_strchr("\n\0", tmp[i - 1][0])
-		&& ft_strchr(" \n\0", tmp[i - 1][k]) && tmp[i][k] == '0')
+		&& ft_strchr(" \n\0", tmp[i - 1][k])
+		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
 		return (1);
 	if ((!tmp[i + 1] || ft_strchr(" \n\0", tmp[i + 1][k]))
 		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
 		return (1);
 	if (ft_strchr(" \t\n\0", tmp[i][k + 1])
+		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
+		return (1);
+	if (k > 0 && ft_strchr(" \t", tmp[i][k - 1])
 		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
 		return (1);
 	return (0);
@@ -32,7 +36,7 @@ int	check_nbr(char **tmp, int i, int k, int players)
 	{
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
-		if (tmp[i][k] != '1')
+		if (tmp[i][0] == '\n' || !ft_strchr("1\n", tmp[i][k]))
 			return (1);
 		while (tmp[i][k])
 		{

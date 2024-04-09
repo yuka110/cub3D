@@ -1,13 +1,17 @@
       NO              ./textures/N.png
 SO ./textures/S.png
-WE ./textures/W.png
+WE           ./textures/W.png
 EA ./textures/E.png
-F 255,0,0
 
 
-C 110, 255, 0
 
+
+F 110,1 ,22
+C 110,22,255
 
 1111
-1NW1
+1111
+    
+1111
+1W 1
 1111

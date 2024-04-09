@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:53:05 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:11:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	count_colors(char *color, int k)
 	code = 0;
 	while (color[k])
 	{
-		if (color[k] == ',')
+		if (color[k] == ',' && color[k + 1] != ',' && color[k + 1] != '\n')
 			code++;
 		k++;
 	}
@@ -58,7 +58,16 @@ int	ft_isdigitstr(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i]) && !ft_strchr(" \t\n", s[i]))
+		if (ft_strchr(" \t\n", s[i]))
+		{
+			while (s[i] && ft_strchr(" \t\n", s[i]))
+				i++;
+			if (s[i])
+				return (1);
+			else
+				return (0);
+		}
+		if (!ft_isdigit(s[i]))
 			return (1);
 		i++;
 	}
@@ -77,7 +86,7 @@ int	check_color(char *color, int k)
 	if (!arr)
 		return (1);
 	k = 0;
-	while (arr[k])
+	while (k < 3)
 	{
 		i = 0;
 		while (arr[k][i] && ft_strchr(" \t\n", arr[k][i]))
@@ -92,7 +101,7 @@ int	check_color(char *color, int k)
 	return (ft_freearrs(arr), 0);
 }
 
-int	ft_checkmap(char **tmp, int i, int k)
+int	ft_checkmap(char **tmp, int i, int k, int c_cnt)
 {
 	while (tmp[i])
 	{
@@ -105,13 +114,16 @@ int	ft_checkmap(char **tmp, int i, int k)
 				|| !ft_strncmp(tmp[i] + k, "EA", 2))
 			&& check_texture(tmp[i], k + 2))
 			return (1);
-		else if ((tmp[i][k] == 'F' || tmp[i][k] == 'C')
-				&& (check_color(tmp[i], k + 1)))
-			return (1);
-		else if (!ft_strchr("NSWEFC\n", tmp[i][k]))
+		else if (tmp[i][k] == 'F' || tmp[i][k] == 'C')
+		{
+			c_cnt++;
+			if (c_cnt > 2 || (check_color(tmp[i], k + 1)))
+				return (printf("color\n"), 1);
+		}
+		else if (!ft_strchr("NSWEFC\n\0", tmp[i][k]))
 		{
 			if (check_nbr(tmp + i, 0, k, 0))
-				return (1);
+				return (printf("nbr\n"), 1);
 			break ;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/01 15:14:45 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:27:22 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:01:54 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	*parse_color(char **tmp, char id, int i, int k)
 	return (color);
 }
 
-char	*dup_texture(char *tmp, int k)
+char	*dup_texture(char *dst, char *tmp, int k)
 {
 	char	*file;
 
+	if (dst)
+		return (free(dst), NULL);
 	while (ft_strchr(" \t", tmp[k]))
 		k++;
 	file = ft_strdup(tmp + k);
@@ -76,19 +78,19 @@ void	parse_texture(char **tmp, t_map **map, int i, int k)
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
 		if (!ft_strncmp(tmp[i] + k, "NO", 2))
-			(*map)->n_tex = dup_texture(tmp[i], k + 2);
+			(*map)->n_tex = dup_texture((*map)->n_tex, tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "SO", 2))
-			(*map)->s_tex = dup_texture(tmp[i], k + 2);
+			(*map)->s_tex = dup_texture((*map)->s_tex, tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "WE", 2))
-			(*map)->w_tex = dup_texture(tmp[i], k + 2);
+			(*map)->w_tex = dup_texture((*map)->w_tex, tmp[i], k + 2);
 		else if (!ft_strncmp(tmp[i] + k, "EA", 2))
-			(*map)->e_tex = dup_texture(tmp[i], k + 2);
+			(*map)->e_tex = dup_texture((*map)->e_tex, tmp[i], k + 2);
 		i++;
 	}
 	if (!(*map)->n_tex || !(*map)->s_tex || !(*map)->e_tex || !(*map)->w_tex)
 	{
 		ft_freearrs(tmp);
-		ft_error("texture malloc failed", *map);
+		ft_error("texture file has duplicate or malloc failed", *map);
 	}
 }
 
@@ -113,7 +115,7 @@ t_map	*ft_initmap(char **tmp)
 	if (!map->ceiling || !map->floor)
 	{
 		ft_freearrs(tmp);
-		ft_error("color malloc failed", map);
+		ft_error("color is missing or malloc failed", map);
 	}
 	parse_texture(tmp, &map, 0, 0);
 	return (map);
