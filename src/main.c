@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:20:38 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:00:57 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("number of argument is not good", NULL);
 	tmp = ft_parsecub(av[1]);
-	if (ft_checkmap(tmp, 0, 0))
+	if (ft_checkmap(tmp, 0, 0, 0))
 	{
 		ft_freearrs(tmp);
 		ft_error("map is invalid", NULL);
