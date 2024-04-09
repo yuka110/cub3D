@@ -6,12 +6,12 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/04/02 11:34:57 by yitoh         ########   odam.nl          #
+#    Updated: 2024/04/09 12:21:50 by evoronin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=leak #-O1
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=leak -O1
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 NAME = cub3D
 SRC = src/main.c\

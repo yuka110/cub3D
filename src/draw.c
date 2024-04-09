@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 12:06:47 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 13:58:18 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,3 @@ void	draw_layout(t_data *data, t_map *map)
 		y++;
 	}
 }
-// test drawing texture to image
-// void	draw_layout(t_data *data, t_map *map)
-// {
-// 	int	x;
-// 	int	y;
-// 	mlx_texture_t	*t;
-// 	t_color			col;
-
-// 	(void) map;
-// 	t = mlx_load_png(data->map->e_tex);
-// 	y = 0;
-// 	while (y < HEIGHT)
-// 	{
-// 		x = 0;
-// 		while (x < WIDTH)
-// 		{
-// 			col.r = t->pixels[(y * WIDTH + x) * t->bytes_per_pixel];
-// 			// y * 512
-// 			col.g = t->pixels[(y * WIDTH + x) * t->bytes_per_pixel + 1];
-// 			col.b = t->pixels[(y * WIDTH + x) * t->bytes_per_pixel + 2];
-// 			col.c = ft_pixel(col.r, col.g, col.b);
-// 			mlx_put_pixel(data->img, x, y, col.c);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 12:11:59 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 13:58:22 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void		find_plane(t_map *map, t_data *data);
 
 //hooks
 void		ft_hooks(mlx_key_data_t k, void *param);
+
 //texture
 uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);

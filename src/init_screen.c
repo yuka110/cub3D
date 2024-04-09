@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 12:11:45 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 13:58:33 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	init_screen(t_map *map)
 	t_data	*data;
 
 	data = init_data(map);
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!data->mlx)
 	{
 		free (data);
@@ -91,8 +91,8 @@ int	init_screen(t_map *map)
 	}
 	draw_layout(data, map);
 	game_loop(data);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_key_hook(data->mlx, ft_hooks, data);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 	free (data);
