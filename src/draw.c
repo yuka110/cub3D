@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 13:58:18 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 16:48:26 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,28 @@
 
 void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 {
-	int			t_x;
-	int			t_y;
-	double		wall_x;
-	double		step;
-	double		tex_pos;
+	t_text			t;
 
+	t = find_tex(ray);
 	if (ray->side == 0)
-		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
+		t.wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
-		wall_x = data->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
-	wall_x -= floor(wall_x);
-	t_x = (int)(wall_x * (double)TEXWIDTH);
+		t.wall_x = data->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
+	t.wall_x -= floor(t.wall_x);
+	t.t_x = (int)(t.wall_x * (double)t.t->width);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		t_x = TEXWIDTH - t_x - 1;
+		t.t_x = t.t->width - t.t_x - 1;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
-		t_x = TEXWIDTH - t_x - 1;
-	step = 1.0 * TEXHEIGHT / line_h;
-	tex_pos = (ray->start - (HEIGHT / 2) + (line_h / 2)) * step;
+		t.t_x = t.t->width - t.t_x - 1;
+	t.step = 1.0 * t.t->height / line_h;
+	t.tex_pos = (ray->start - ((double)HEIGHT / 2) + ((double)line_h / 2))
+		* t.step;
 	while (ray->start < ray->end)
 	{
-		t_y = (int)tex_pos & (TEXHEIGHT - 1);
-		tex_pos += step;
-		mlx_put_pixel(data->img, x, ray->start, find_pixel(ray, t_x, t_y));
+		t.t_y = (int)t.tex_pos;
+		t.tex_pos += t.step;
+		mlx_put_pixel(data->img, x, ray->start,
+			find_pixel(t.t, t.t_x, t.t_y));
 		ray->start++;
 	}
 }

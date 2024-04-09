@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 12:07:28 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 16:47:42 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,25 @@ void	fill_texture(t_data *data, t_rays *ray)
 	}
 }
 
-//fix the side x and y
-uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
+t_text	find_tex(t_rays *ray)
 {
-	mlx_texture_t	*t;
-	t_color			col;
+	t_text	t;
 
 	if (ray->ray_dir_y >= 0 && ray->side == 1)
-		t = ray->walls[3].tex;
+		t.t = ray->walls[3].tex;
 	else if (ray->ray_dir_y <= 0 && ray->side == 1)
-		t = ray->walls[2].tex;
+		t.t = ray->walls[2].tex;
 	else if (ray->ray_dir_x >= 0 && ray->side == 0)
-		t = ray->walls[0].tex;
+		t.t = ray->walls[0].tex;
 	else
-		t = ray->walls[1].tex;
+		t.t = ray->walls[1].tex;
+	return (t);
+}
+
+uint32_t	find_pixel(mlx_texture_t *t, uint32_t x, uint32_t y)
+{
+	t_color			col;
+
 	col.r = t->pixels[(y * t->width + x) * 4];
 	col.g = t->pixels[(y * t->width + x) * 4 + 1];
 	col.b = t->pixels[(y * t->width + x) * 4 + 2];

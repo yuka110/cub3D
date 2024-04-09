@@ -6,14 +6,14 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:27:29 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:27:18 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIDTH 512
-# define HEIGHT 510
+# define WIDTH 1920
+# define HEIGHT 1080
 
 // Headers
 # include <unistd.h>

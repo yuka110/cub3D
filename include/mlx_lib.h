@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 13:58:22 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 16:47:34 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
-#  define TEXWIDTH 512
-#  define TEXHEIGHT 512
 #  define MV_SP 1
 #  define RT_SP 5
 # endif
@@ -39,6 +37,17 @@ typedef struct s_wall
 {
 	mlx_texture_t	*tex;
 }	t_wall;
+
+typedef struct s_text
+{
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				t_x;
+	int				t_y;
+	mlx_texture_t	*t;
+}	t_text;
+
 
 typedef struct s_rays
 {
@@ -95,8 +104,9 @@ void		find_plane(t_map *map, t_data *data);
 void		ft_hooks(mlx_key_data_t k, void *param);
 
 //texture
-uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y);
+uint32_t	find_pixel(mlx_texture_t *t, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);
 void		fill_texture(t_data *data, t_rays *ray);
+t_text		find_tex(t_rays *ray);
 
 #endif

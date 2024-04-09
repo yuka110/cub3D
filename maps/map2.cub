@@ -1,10 +1,10 @@
-NO textures/N.png
-SO textures/S.png
-WE textures/W.png
-EA textures/E.png
+NO tex/cat.png
+SO tex/north.png
+WE tex/south.png
+EA tex/geelmuurtje.png
 F 255,100,0
 C 110,30,100
 
 111111
-1S101
+1E101
 1111111
