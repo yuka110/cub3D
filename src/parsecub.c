@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
+/*   parsecub.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/28 16:24:41 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 13:22:17 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,4 @@ char	**ft_parsecub(char *cubfile)
 		ft_error("malloc failed", NULL);
 	tmp = fill_tmp(tmp, fd, 0, cubfile);
 	return (tmp);
-}
-
-t_map	*ft_init(char *cubfile)
-{
-	t_map	*map;
-	char	**tmp;
-
-	tmp = ft_parsecub(cubfile);
-	if (ft_checkmap(tmp, 0, 0))
-	{
-		ft_freearrs(tmp);
-		ft_error("map is invalid", NULL);
-	}
-	map = ft_initmap(tmp);
-	ft_freearrs(tmp);
-	return (map);
 }
