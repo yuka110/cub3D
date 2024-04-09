@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 14:20:04 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/03/28 11:38:45 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 11:59:23 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int32_t	ft_color_one(t_data *data, t_rays *ray)
 
 	(void)ray;
 	(void)data;
-	// if (data->map->map2d[ray->map_y][ray->map_x] == '1')
-	// 	col.c = ft_pixel(0, 0, 0);
-	// else
 	col = ft_pixel(255, 255, 255);
 	return (col);
 }

@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:44:54 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 18:30:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:07:41 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	cast_ray(t_data *data, t_rays *ray)
 		camera_x = 2 * x / ((double)WIDTH) - 1;
 		ray->ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-		// printf("x: %d\n", x);
 		cast_ray_next(ray, data);
 		if (ray->side == 0)
 			ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 14:43:21 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:07:28 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,14 @@ uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y)
 	mlx_texture_t	*t;
 	t_color			col;
 
-	// if (ray->ray_dir_y > 0 && ray->side == 1)
-	// 	t = ray->walls[0].tex;
-	// else if (ray->ray_dir_y < 0 && ray->side == 1)
-	// 	t = ray->walls[1].tex;
-	// else if (ray->ray_dir_x > 0 && ray->side == 0)
-	// 	t = ray->walls[2].tex;
-	// else
-	// 	t = ray->walls[3].tex;
-	if (ray->ray_dir_y >= 0 && ray->side == 1) //North
+	if (ray->ray_dir_y >= 0 && ray->side == 1)
 		t = ray->walls[3].tex;
-	else if (ray->ray_dir_y <= 0 && ray->side == 1) //South
+	else if (ray->ray_dir_y <= 0 && ray->side == 1)
 		t = ray->walls[2].tex;
-	else if (ray->ray_dir_x >= 0 && ray->side == 0) //West
+	else if (ray->ray_dir_x >= 0 && ray->side == 0)
 		t = ray->walls[0].tex;
 	else
-		t = ray->walls[1].tex; //East
+		t = ray->walls[1].tex;
 	col.r = t->pixels[(y * t->width + x) * 4];
 	col.g = t->pixels[(y * t->width + x) * 4 + 1];
 	col.b = t->pixels[(y * t->width + x) * 4 + 2];

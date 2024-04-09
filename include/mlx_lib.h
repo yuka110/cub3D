@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 16:07:37 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:08:50 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ typedef struct s_color
 	int	c;
 }	t_color;
 
-
 typedef struct s_wall
 {
 	mlx_texture_t	*tex;
 }	t_wall;
-
 
 typedef struct s_rays
 {
@@ -98,7 +96,5 @@ void		ft_hooks(mlx_key_data_t k, void *param);
 uint32_t	find_pixel(t_rays *ray, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);
 void		fill_texture(t_data *data, t_rays *ray);
-
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: evoronin <evoronin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 10:46:58 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/04 14:43:07 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:06:47 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,16 @@
 
 void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 {
-	int			y;
-	int			y_max;
-	int	t_x;
-	int	t_y;
-	int	col;
+	int			t_x;
+	int			t_y;
 	double		wall_x;
 	double		step;
 	double		tex_pos;
 
-	y = ray->start;
-	y_max = ray->end;
-	// printf("%d\n", ray->side);
 	if (ray->side == 0)
 		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wall_x = data->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
-	// printf("%f %f %f\n", data->pos_y, ray->perp_wall_dist, ray->ray_dir_y);
 	wall_x -= floor(wall_x);
 	t_x = (int)(wall_x * (double)TEXWIDTH);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
@@ -39,16 +32,13 @@ void	paint_line(t_data *data, t_rays *ray, int x, int line_h)
 	if (ray->side == 1 && ray->ray_dir_y < 0)
 		t_x = TEXWIDTH - t_x - 1;
 	step = 1.0 * TEXHEIGHT / line_h;
-	tex_pos = (y - (HEIGHT / 2) + (line_h / 2)) * step;
-	// t_x = (int)(wall_x * (double)TEXWIDTH);
-	while (y < y_max)
+	tex_pos = (ray->start - (HEIGHT / 2) + (line_h / 2)) * step;
+	while (ray->start < ray->end)
 	{
 		t_y = (int)tex_pos & (TEXHEIGHT - 1);
 		tex_pos += step;
-		col = find_pixel(ray, t_x, t_y);
-		// printf("%x\n", col);
-		mlx_put_pixel(data->img, x, y, col);
-		y++;
+		mlx_put_pixel(data->img, x, ray->start, find_pixel(ray, t_x, t_y));
+		ray->start++;
 	}
 }
 
