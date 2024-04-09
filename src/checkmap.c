@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:13:46 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 12:48:57 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,13 @@ int	check_nbr(char **tmp, int i, int k, int players)
 	{
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
+		if (tmp[i][k] != '1')
+			return (1);
 		while (tmp[i][k])
 		{
-			if (!ft_strchr("\n\0", tmp[i - 1][0]) && ft_strchr(" \0", tmp[i - 1][k]) && !ft_strchr("1 \t\n\0", tmp[i][k]))
+			if (!ft_strchr("\n\0", tmp[i - 1][0]) && ft_strchr(" \n\0", tmp[i - 1][k]) && tmp[i][k] == '0')
 				return (ft_printf("map is not properly closed\n"), 1);
-			if ((!tmp[i + 1] || ft_strchr(" \0", tmp[i + 1][k])) && !ft_strchr("1 \t\n\0", tmp[i][k]))
+			if ((!tmp[i + 1] || ft_strchr(" \n\0", tmp[i + 1][k])) && !ft_strchr("1 \t\n\0", tmp[i][k]))
 				return (ft_printf("map is not properly closed\n"), 1);
 			if (ft_strchr(" \t\n\0", tmp[i][k + 1]) && !ft_strchr("1 \t\n\0", tmp[i][k]))
 				return (ft_printf("map is not properly closed\n"), 1);
