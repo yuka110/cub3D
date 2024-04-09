@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 13:58:33 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 15:25:43 by evoronin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	find_plane(t_map *map, t_data *data)
 {
 	if (map->map2d[map->py][map->px] == 5)
 	{
-		data->dir_y = -1;
-		data->plane_x = -0.66;
+		data->dir_y = 1;
+		data->plane_x = 0.66;
 		data->plane_y = 0;
 	}
 	else if (map->map2d[map->py][map->px] == 6)
@@ -43,8 +43,8 @@ void	find_plane(t_map *map, t_data *data)
 	}
 	else if (map->map2d[map->py][map->px] == 7)
 	{
-		data->dir_y = 1;
-		data->plane_x = 0.66;
+		data->dir_y = -1;
+		data->plane_x = -0.66;
 		data->plane_y = 0;
 	}
 	else if (map->map2d[map->py][map->px] == 8)
