@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:11:37 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 16:57:50 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	check_color(char *color, int k)
 
 int	ft_checkmap(char **tmp, int i, int k, int c_cnt)
 {
-	while (tmp[i])
+	while (tmp[i++])
 	{
 		k = 0;
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
@@ -126,7 +126,6 @@ int	ft_checkmap(char **tmp, int i, int k, int c_cnt)
 				return (printf("nbr\n"), 1);
 			break ;
 		}
-		i++;
 	}
 	return (0);
 }
