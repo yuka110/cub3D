@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/01 15:14:45 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/28 16:50:42 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 12:15:35 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_colorid(char **tmp, char id, int i, int k)
 		k = 0;
 		while (tmp[i][k] && ft_strchr(" \t", tmp[i][k]))
 			k++;
-		if (tmp[i][k] == id && ft_strchr(" \t", tmp[i][k + 1]))
+		if (tmp[i][k] == id)
 			break ;
 		i++;
 	}
@@ -34,7 +34,7 @@ int	*parse_color(char **tmp, char id, int i, int k)
 	i = find_colorid(tmp, id, i, k);
 	if (!tmp[i])
 		return (NULL);
-	arr = ft_split(tmp[i] + k + 2, ',');
+	arr = ft_split(tmp[i] + k + 1, ',');
 	if (!arr)
 		return (NULL);
 	color = ft_calloc(4, sizeof(int));
