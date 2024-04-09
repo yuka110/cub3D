@@ -6,7 +6,7 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/04/02 11:34:57 by yitoh         ########   odam.nl          #
+#    Updated: 2024/04/09 13:22:16 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=leak #-O1
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 NAME = cub3D
 SRC = src/main.c\
-	  src/init.c\
+	  src/parsecub.c\
 	  src/initmap.c\
 	  src/checkmap.c\
 	  src/parsemap.c\

@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:48:57 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 13:14:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	check_color(char *color, int k)
 			i++;
 		if (!arr[k][i])
 			return (ft_freearrs(arr), 1);
-		c_code = ft_atoi(arr[k]);
+		printf("color %s\n", arr[k] + i);
+		c_code = ft_atoi(arr[k] + i);
 		if (c_code < 0 || c_code > 255)
 			return (ft_freearrs(arr), 1);
 		k++;

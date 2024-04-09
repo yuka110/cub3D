@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:08:37 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 13:21:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_map
 	int			py;
 }	t_map;
 
-//init
-t_map	*ft_init(char *cubfile);
+//parsecub
+char	**ft_parsecub(char *cubfile);
 
 //initmap
 t_map	*ft_initmap(char **tmp);
