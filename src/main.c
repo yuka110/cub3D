@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 16:59:52 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:00:57 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:55:29 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ int	main(int ac, char **av)
 	}
 	map = ft_initmap(tmp);
 	ft_freearrs(tmp);
-	if (init_screen(map) != 0)
-		ft_error("MLX error", NULL);
-	ft_cleanup(map);
+	init_screen(map);
 }

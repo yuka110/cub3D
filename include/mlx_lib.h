@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 16:47:34 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 17:57:58 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,18 @@ void		find_delta(t_rays *ray);
 void		find_plane(t_map *map, t_data *data);
 
 //hooks
-void		ft_hooks(mlx_key_data_t k, void *param);
+void		ft_hooks(void *param);
 
 //texture
 uint32_t	find_pixel(mlx_texture_t *t, uint32_t x, uint32_t y);
 int			ft_pixel(int r, int g, int b);
 void		fill_texture(t_data *data, t_rays *ray);
 t_text		find_tex(t_rays *ray);
+
+//cleanup
+void	ft_freearrs(char **s);
+void	ft_freeintarrs(int **s);
+void	ft_error(char *msg, t_map *map);
+void	ft_cleanup(t_data *data);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/09 13:25:53 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:38:41 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 18:05:34 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 int	wall_closed(char **tmp, int i, int k)
 {
@@ -18,8 +19,7 @@ int	wall_closed(char **tmp, int i, int k)
 		&& ft_strchr(" \n\0", tmp[i - 1][k])
 		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
 		return (1);
-	if ((!tmp[i + 1] || ft_strchr(" \n\0", tmp[i + 1][k]))
-		&& !ft_strchr("1 \t\n\0", tmp[i][k]))
+	if (!ft_strchr("1 \t\n\0", tmp[i][k]) && (!tmp[i + 1] || ft_strchr(" \n\0", tmp[i + 1][k])))
 		return (1);
 	if (ft_strchr(" \t\n\0", tmp[i][k + 1])
 		&& !ft_strchr("1 \t\n\0", tmp[i][k]))

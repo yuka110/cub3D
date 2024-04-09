@@ -6,11 +6,12 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 13:22:17 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:58:43 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 int	cnt_line(int fd, char *cubfile)
 {

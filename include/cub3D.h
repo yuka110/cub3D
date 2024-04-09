@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:50:27 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/09 17:58:08 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "../Libft/libft.h"
+
 
 typedef struct s_map
 {
@@ -52,12 +53,6 @@ int		check_nbr(char **tmp, int i, int k, int players);
 
 //parsemap
 int		**parse_map(char **tmp, t_map *map, int row, int i);
-
-//cleanup
-void	ft_freearrs(char **s);
-void	ft_freeintarrs(int **s);
-void	ft_error(char *msg, t_map *map);
-void	ft_cleanup(t_map *map);
 
 //testprint
 void	ft_printarr(char **tmp);

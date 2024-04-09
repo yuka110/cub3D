@@ -6,26 +6,26 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 12:18:39 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:51:44 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
 
-void	move_updown(mlx_key_data_t k, t_data *data, int **map)
+void	move_updown(t_data *data, int **map)
 {
 	double	mv_x;
 	double	mv_y;
 
 	mv_x = 0;
 	mv_y = 0;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && k.action == MLX_PRESS)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
 		mv_x = (data->dir_x) * MV_SP;
 		mv_y = (data->dir_y) * MV_SP;
 	}
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_S) && k.action == MLX_PRESS)
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
 		mv_x = -(data->dir_x) * MV_SP;
 		mv_y = -(data->dir_y) * MV_SP;
@@ -41,19 +41,19 @@ void	move_updown(mlx_key_data_t k, t_data *data, int **map)
 	}
 }
 
-void	move_side(mlx_key_data_t k, t_data *data, int **map)
+void	move_side(t_data *data, int **map)
 {
 	double	mv_x;
 	double	mv_y;
 
 	mv_x = 0;
 	mv_y = 0;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A) && k.action == MLX_PRESS)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		mv_x = -data->plane_x * MV_SP;
 		mv_y = -data->plane_y * MV_SP;
 	}
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_D) && k.action == MLX_PRESS)
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
 		mv_x = data->plane_x * MV_SP;
 		mv_y = data->plane_y * MV_SP;
@@ -90,22 +90,22 @@ void	rotate_view(t_data *data, int right)
 	game_loop(data);
 }
 
-void	ft_hooks(mlx_key_data_t k, void *param)
+void	ft_hooks(void *param)
 {
 	t_data	*data;
 
 	data = param;
-	k.key = MLX_KEY_ESCAPE;
-	if (mlx_is_key_down(data->mlx, k.key))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
+		mlx_delete_image(data->mlx, data->img);
 		mlx_close_window(data->mlx);
 		free(data);
 		exit(EXIT_SUCCESS);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) && k.action == MLX_PRESS)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_view(data, true);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) && k.action == MLX_PRESS)
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		rotate_view(data, false);
-	move_updown(k, data, data->map->map2d);
-	move_side(k, data, data->map->map2d);
+	move_updown(data, data->map->map2d);
+	move_side(data, data->map->map2d);
 }

@@ -6,11 +6,12 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:57:50 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:59:18 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 int	check_texture(char *png, int k)
 {
@@ -118,12 +119,12 @@ int	ft_checkmap(char **tmp, int i, int k, int c_cnt)
 		{
 			c_cnt++;
 			if (c_cnt > 2 || (check_color(tmp[i], k + 1)))
-				return (printf("color\n"), 1);
+				return (1);
 		}
 		else if (!ft_strchr("NSWEFC\n\0", tmp[i][k]))
 		{
 			if (check_nbr(tmp + i, 0, k, 0))
-				return (printf("nbr\n"), 1);
+				return (1);
 			break ;
 		}
 	}

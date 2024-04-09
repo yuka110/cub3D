@@ -6,11 +6,12 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 17:25:02 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/03/09 12:09:44 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:56:25 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 //free 2d int arrays
 void	ft_freeintarrs(int **s)
@@ -45,19 +46,12 @@ void	ft_error(char *msg, t_map *map)
 {
 	if (map)
 	{
-		if (map->map2d)
-			ft_freeintarrs(map->map2d);
-		if (map->floor)
+		ft_freeintarrs(map->map2d);
 			free(map->floor);
-		if (map->ceiling)
 			free(map->ceiling);
-		if (map->n_tex)
 			free(map->n_tex);
-		if (map->s_tex)
 			free(map->s_tex);
-		if (map->w_tex)
 			free(map->s_tex);
-		if (map->e_tex)
 			free(map->s_tex);
 		free(map);
 	}
@@ -66,15 +60,16 @@ void	ft_error(char *msg, t_map *map)
 }
 
 //used at the end of program & exit 0
-void	ft_cleanup(t_map *map)
+void	ft_cleanup(t_data *data)
 {
-	ft_freeintarrs(map->map2d);
-	free(map->ceiling);
-	free(map->floor);
-	free(map->s_tex);
-	free(map->n_tex);
-	free(map->w_tex);
-	free(map->e_tex);
-	free(map);
+	ft_freeintarrs(data->map->map2d);
+	free(data->map->ceiling);
+	free(data->map->floor);
+	free(data->map->s_tex);
+	free(data->map->n_tex);
+	free(data->map->w_tex);
+	free(data->map->e_tex);
+	free(data->map);
+	free(data);
 	exit(0);
 }

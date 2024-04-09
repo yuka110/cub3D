@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 16:54:46 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:55:40 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int	init_screen(t_map *map)
 	}
 	draw_layout(data, map);
 	game_loop(data);
-	mlx_key_hook(data->mlx, ft_hooks, data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_loop_hook(data->mlx, ft_hooks, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
-	free (data);
+	ft_cleanup(data);
 	return (0);
 }

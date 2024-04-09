@@ -6,11 +6,12 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 17:40:29 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 14:00:03 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:58:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 void	width_depth(char **tmp, t_map *map, int i, int k)
 {

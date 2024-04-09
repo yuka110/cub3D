@@ -6,11 +6,12 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/01 15:14:45 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 16:01:54 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/09 17:58:51 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include "../include/mlx_lib.h"
 
 int	find_colorid(char **tmp, char id, int i, int k)
 {
