@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 11:41:46 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 17:55:40 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 09:18:35 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int	init_screen(t_map *map)
 	if (!data->mlx)
 	{
 		free (data);
-		ft_error("mlx init", map);
+		ft_error("mlx init failed", map);
 	}
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
 	{
 		free(data);
 		mlx_terminate(data->mlx);
-		ft_error("img init", map);
+		ft_error("img init failed", map);
 	}
 	draw_layout(data, map);
 	game_loop(data);

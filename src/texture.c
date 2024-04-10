@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 16:47:42 by evoronin      ########   odam.nl         */
+/*   Updated: 2024/04/10 09:21:48 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	fill_texture(t_data *data, t_rays *ray)
 			mlx_delete_texture(ray->walls[2].tex);
 		if (ray->walls[3].tex)
 			mlx_delete_texture(ray->walls[3].tex);
-		ft_error("failed to open png", data->map);
+		ft_error("failed to load texture", data->map);
 	}
 }
 

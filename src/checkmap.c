@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/18 17:43:06 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 17:59:18 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 09:17:27 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_texture(char *png, int k)
 	char	*file;
 
 	if (!ft_strnstr(png, ".png", ft_strlen(png)))
-		return (ft_printf("png file not found "), 1);
+		return (1);
 	while (ft_strchr(" \t", png[k]))
 		k++;
 	file = ft_strdup(png + k);

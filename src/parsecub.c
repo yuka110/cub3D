@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 17:58:43 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 09:20:15 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**fill_tmp(char **tmp, int fd, int i, char *cubfile)
 
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
-		ft_error("file couldn't open", NULL);
+		ft_error("file cannot be opened", NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
