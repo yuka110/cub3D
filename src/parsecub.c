@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/10 09:20:15 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 13:30:10 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_parsecub(char *cubfile)
 	fd = 0;
 	cnt = cnt_line(fd, cubfile);
 	if (cnt <= 0)
-		ft_error("empty file", NULL);
+		ft_error("invalid file", NULL);
 	tmp = ft_calloc(cnt + 1, sizeof(char *));
 	if (!tmp)
 		ft_error("malloc failed", NULL);
