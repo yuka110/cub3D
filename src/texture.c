@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/28 11:18:41 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/10 09:21:48 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 13:41:59 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ t_text	find_tex(t_rays *ray)
 	t_text	t;
 
 	if (ray->ray_dir_y >= 0 && ray->side == 1)
-		t.t = ray->walls[3].tex;
-	else if (ray->ray_dir_y <= 0 && ray->side == 1)
 		t.t = ray->walls[2].tex;
+	else if (ray->ray_dir_y <= 0 && ray->side == 1)
+		t.t = ray->walls[3].tex;
 	else if (ray->ray_dir_x >= 0 && ray->side == 0)
-		t.t = ray->walls[0].tex;
-	else
 		t.t = ray->walls[1].tex;
+	else
+		t.t = ray->walls[0].tex;
 	return (t);
 }
 
