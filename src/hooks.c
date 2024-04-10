@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/20 17:55:30 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 17:51:44 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 15:03:59 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	rotate_view(t_data *data, int right)
 
 	angle = 0;
 	if (right)
-		angle -= RT_SP * (M_PI / 180);
-	else
 		angle += RT_SP * (M_PI / 180);
+	else
+		angle -= RT_SP * (M_PI / 180);
 	cp_dirx = data->dir_x;
 	cp_planex = data->plane_x;
 	data->dir_x = data->dir_x * cos(angle) - data->dir_y * sin(angle);
