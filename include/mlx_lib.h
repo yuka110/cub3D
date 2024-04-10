@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/10 13:47:29 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 15:22:15 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
-#  define MV_SP 1
+#  define MV_SP 0.5
 #  define RT_SP 5
 # endif
 
