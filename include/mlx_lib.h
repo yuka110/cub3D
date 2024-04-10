@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/27 12:59:06 by evoronin      #+#    #+#                 */
-/*   Updated: 2024/04/09 17:57:58 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 13:47:29 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_text
 	int				t_y;
 	mlx_texture_t	*t;
 }	t_text;
-
 
 typedef struct s_rays
 {
@@ -110,9 +109,9 @@ void		fill_texture(t_data *data, t_rays *ray);
 t_text		find_tex(t_rays *ray);
 
 //cleanup
-void	ft_freearrs(char **s);
-void	ft_freeintarrs(int **s);
-void	ft_error(char *msg, t_map *map);
-void	ft_cleanup(t_data *data);
+void		ft_freearrs(char **s);
+void		ft_freeintarrs(int **s);
+void		ft_error(char *msg, t_map *map);
+void		ft_cleanup(t_data *data);
 
 #endif

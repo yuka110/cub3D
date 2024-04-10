@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:51:41 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 17:58:08 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 13:47:14 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "../Libft/libft.h"
-
 
 typedef struct s_map
 {
