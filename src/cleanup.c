@@ -6,7 +6,7 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 17:25:02 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 17:56:25 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 12:48:56 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_error(char *msg, t_map *map)
 	if (map)
 	{
 		ft_freeintarrs(map->map2d);
-			free(map->floor);
-			free(map->ceiling);
-			free(map->n_tex);
-			free(map->s_tex);
-			free(map->s_tex);
-			free(map->s_tex);
+		free(map->floor);
+		free(map->ceiling);
+		free(map->n_tex);
+		free(map->s_tex);
+		free(map->w_tex);
+		free(map->e_tex);
 		free(map);
 	}
 	ft_printf("Error: %s\n", msg);

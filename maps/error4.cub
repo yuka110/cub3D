@@ -1,12 +1,11 @@
       NO              ./textures/N.png
 SO ./textures/S.png
-WE           ./textures/W.png
+WE           textures/W.png.png
 EA ./textures/E.png
 
-
-F 220,100,0
+F 0, 0, 0x00FFFF
 C 225,30,0
 
 1111
-1 N1
+10N1
 1111
