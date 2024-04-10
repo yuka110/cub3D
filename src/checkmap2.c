@@ -6,7 +6,7 @@
 /*   By: yitoh <yitoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/09 13:25:53 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/09 18:05:34 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/10 12:41:55 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	check_nbr(char **tmp, int i, int k, int players)
 		while (tmp[i][k])
 		{
 			if (wall_closed(tmp, i, k))
-				return (ft_printf("map wall is not properly closed\n"), 1);
+				return (1);
 			if (!ft_strchr("10NSEW \t\n\0", tmp[i][k]))
-				return (ft_printf("invalid char in map\n"), 1);
+				return (1);
 			if (ft_strchr("NSEW", tmp[i][k]))
 				players++;
 			k++;
