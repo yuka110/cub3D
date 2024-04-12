@@ -6,12 +6,29 @@
 /*   By: elenavoronin <elnvoronin@gmail.com>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 15:54:49 by yitoh         #+#    #+#                 */
-/*   Updated: 2024/04/10 13:30:10 by yitoh         ########   odam.nl         */
+/*   Updated: 2024/04/12 16:37:37 by yitoh         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 #include "../include/mlx_lib.h"
+
+int	ft_strrstr(const char *str, char *found, int cnt)
+{
+	int		i;
+
+	if (!str)
+		return (0);
+	i = ft_strlen(str) - 1;
+	while (cnt > 0)
+	{
+		if (str[i] != found[cnt - 1])
+			return (1);
+		i--;
+		cnt--;
+	}
+	return (0);
+}
 
 int	cnt_line(int fd, char *cubfile)
 {
@@ -19,6 +36,8 @@ int	cnt_line(int fd, char *cubfile)
 	char	*line;
 
 	cnt = 0;
+	if (ft_strrstr(cubfile, ".cub", 4))
+		return (-1);
 	fd = open(cubfile, O_RDONLY);
 	if (fd < 0)
 		ft_error("file couldn't open", NULL);

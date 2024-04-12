@@ -6,7 +6,7 @@
 #    By: elenavoronin <elnvoronin@gmail.com>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/16 15:46:45 by yitoh         #+#    #+#                  #
-#    Updated: 2024/04/09 18:13:02 by yitoh         ########   odam.nl          #
+#    Updated: 2024/04/12 16:37:03 by yitoh         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,21 +34,23 @@ LIB_MLX = ./MLX42/build/libmlx42.a
 MLX_DIRECTORY = ./MLX42
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
-HEADERS = ./Libft ./include ./MLX42/include/MLX42 
+HEADER = ./include 
+LIB_HEADER = ./Libft 
+MLX_HEADER = ./MLX42/include/MLX42 
 
 all: ${NAME}
 
-${OBJ_DIR}%.o: %.c $(HEADERS)
+${OBJ_DIR}%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
 	@echo "Compiling $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-${LIB_MLX}: $(HEADERS)
+${LIB_MLX}: $(MLX_HEADER)
 	@git submodule update --init
 	@cmake ${MLX_DIRECTORY} -B ${MLX_DIRECTORY}/build
 	@$(MAKE) -C ${MLX_DIRECTORY}/build -j4
 
-${LIBFT}: $(HEADERS)
+${LIBFT}: $(LIB_HEADER)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
 
